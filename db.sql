@@ -63,6 +63,6 @@ CREATE TABLE IF NOT EXISTS Freq_heroes (
     PRIMARY KEY (hero_id, account_id),
     FOREIGN KEY (hero_id) REFERENCES Hero(hero_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (account_id) REFERENCES Player(account_id)
+    FOREIGN KEY (account_id) REFERENCES Player(account_idD)
         ON DELETE CASCADE
 );
