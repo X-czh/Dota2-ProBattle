@@ -24,11 +24,49 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link rel="stylesheet" href="../src/index.css">
+    <link rel="stylesheet" href="../src/components/fa/css/all.css">
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- <script src="../src/components/static/react.production.min.js"></script>
+    <script src="../src/components/static/react-dom.production.min.js"></script>
+    <script src="../src/components/static/babel.min.js"></script>
+
+    <script type="text/babel">
+      function Main(){
+        return 
+      }
+      ReactDOM.render(<Main />,document.getElementById("root"))
+    </script> -->
+    <header></header>
+
+    <main class="article-wrapper">
+
+      <h2>Dota2 Battle</h2>
+
+      <div class="hero-wrapper">
+        <div class="hero-input">
+          <form method="POST" enctype="multipart/form-data" action="#">
+            
+              <div class="hero">
+                <label class="hero-label" for="">HERO: </label>
+                <input type="text" class="hero-info" id="hero-info" name="hero">
+                <button type="submit" class="hero-btn"><i class="fas fa-search"></i></button>
+              </div>
+              
+          </form>
+        </div>
+
+        <div class="hero-output">
+          <!-- return the analyzed information here -->
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
