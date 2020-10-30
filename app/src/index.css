@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.article-wrapper{
+  width: 80%;
+  margin: 0 auto;
+  /* background-color: aquamarine; */
+}
+
+/* .hero-wrapper{
+  
+} */
+
+.hero{
+  font-size: 32px;
+}
+
+.hero-label{
+  float: left;
+  margin-right: 4px;
+}
+
+.hero-info{
+  font-size: 30px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgb(224, 224, 224);
+  float: left;
+}
+
+.hero-btn{
+  font-size: 30px;
+
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgb(224, 224, 224);
+  border-left: none;
+  float: left;
+}
+
+.hero-info:focus,
+.hero-info:focus+.hero-btn{
+  border-color: #FF6600;
+}
+
+.hero-btn:hover{
+  background-color: #FF6600;
+  border: none;
+  color: white;
+  border-color: #FF6600;
+}
