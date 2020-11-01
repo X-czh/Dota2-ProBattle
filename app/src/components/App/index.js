@@ -1,7 +1,7 @@
 import React from 'react';
-
+import Body from '../Body';
 import Header from '../Header';
-import Search from '../Search';
+import Footer from '../Footer';
 
 class App extends React.Component {
 
@@ -9,7 +9,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Search />
+        <Body />
+        <Footer />
       </div>
     );
   }
