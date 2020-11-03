@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import './styles.scss';
 import axios from 'axios'
 
-class SearchHero extends React.Component {
+class SearchMatch extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,7 @@ class SearchHero extends React.Component {
 
   handleClick() {
       console.log('button clicked');
-      axios.get('http://127.0.0.1:5000/addHero')
+      axios.get('http://127.0.0.1:5000/searchMatch')
         .then(response => console.log(response));
   }
 
@@ -41,4 +41,4 @@ class SearchHero extends React.Component {
   }
 }
 
-export default SearchHero;
+export default SearchMatch;

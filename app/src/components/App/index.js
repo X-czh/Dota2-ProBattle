@@ -4,6 +4,7 @@ import MyHeader from '../MyHeader';
 import Footer from '../Footer';
 import SearchItem from '../SearchItem';
 import SearchHero from '../SearchHero';
+import SearchMatch from '../SearchMatch';
 import { Dropdown, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
@@ -65,6 +66,7 @@ class App extends React.Component {
           {/* <Body /> */}
 
           <Switch>
+            <Route path="/" component={ Body } exact />
             <Route path="/item" >
               <SearchItem />
             </Route>
@@ -72,7 +74,7 @@ class App extends React.Component {
               <SearchHero />
             </Route>
             <Route path="/match">
-              <Body />
+              <SearchMatch />
             </Route>
           </Switch>
         </Router>

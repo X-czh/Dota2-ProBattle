@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import './styles.scss';
 import axios from 'axios'
 
-class Search extends React.Component {
+class SearchItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -35,10 +35,10 @@ class Search extends React.Component {
     return (
       <div className="Search">
         <input className="Search-input" onChange={this.handleChange} />
-        <button onClick={this.handleClick}>Add item</button>
+        <button onClick={this.handleClick}>Search</button>
       </div>
     );
   }
 }
 
-export default Search;
+export default SearchItem;
