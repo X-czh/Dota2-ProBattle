@@ -2,9 +2,10 @@
 
 ## Dependency
 
-Node.js
-Yarn
-Python
+* Node.js
+* Yarn
+* Python
+* MySQL
 
 ## Install
 
