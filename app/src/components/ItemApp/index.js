@@ -12,12 +12,12 @@ export default class ItemApp extends Component {
   }
 
   itemSearch = (allhero) => {
-    // const url = 'http://127.0.0.1:5000/addhero'
-    // axios.post(url, allhero)
-    //   .then(res => {
-    //     console.log('response: ',res)
-    //   })
-    //   .catch(err => console.log(err))
+    const url = 'http://127.0.0.1:5000/debuffOpponentItem'
+    axios.post(url, allhero)
+      .then(res => {
+        console.log('response: ',res)
+      })
+      .catch(err => console.log(err))
 
   //   this.state.heros = allhero
   }
