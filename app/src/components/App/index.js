@@ -5,7 +5,8 @@ import Footer from '../Footer';
 import ItemApp from '../ItemApp';
 import HeroApp from '../HeroApp';
 import AddMatch from '../AddMatch';
-import DeleteMatch from '../DeleteMatch'
+import DeleteMatch from '../DeleteMatch';
+import SearchMatch from '../SearchMatch';
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
@@ -43,11 +44,34 @@ class App extends React.Component {
             </Menu.Item>
             <Dropdown text="Match" pointing className='link item'>
               <Dropdown.Menu>
-                <Dropdown.Item
-                text="Add match"
-                as = { Link }
-                name="addMatch"
-                to="/addMatch" />
+                <Dropdown.Header>Search</Dropdown.Header>
+                  <Dropdown.Item
+                    text="Search by match ID"
+                    as = { Link }
+                    name="searchMatchByMatchID"
+                    to="/searchMatchByMatchID"
+                  />
+                  <Dropdown.Item
+                    text="Search by account ID"
+                    as = { Link }
+                    name="searchMatchByAccountID"
+                    to="/searchMatchByAccountID" 
+                  />
+                <Dropdown.Header>Add</Dropdown.Header>
+                  <Dropdown.Item
+                    text="Add by match ID"
+                    as = { Link }
+                    name="addMatchByMatchID"
+                    to="/addMatchByMatchID"
+                  />
+                  <Dropdown.Item
+                    text="Add by account ID"
+                    as = { Link }
+                    name="addMatchByAccountID"
+                    to="/addMatchByAccountID" 
+                  />
+                <Dropdown.Header>Delete</Dropdown.Header>
+
                 <Dropdown.Item
                 text="Delete match"
                 as = { Link }
@@ -80,7 +104,16 @@ class App extends React.Component {
             <Route path="/item" >
               <ItemApp />
             </Route>
-            <Route path="/addMatch">
+            <Route path="/searchMatchByMatchID">
+              <SearchMatch searchType="matchID" />
+            </Route>
+            <Route path="/searchMatchByAccountID">
+              <SearchMatch searchType="accountID" />
+            </Route>
+            <Route path="/addMatchByMatchID">
+              <AddMatch />
+            </Route>
+            <Route path="/addMatchByAccountID">
               <AddMatch />
             </Route>
             <Route path="/deleteMatch">
