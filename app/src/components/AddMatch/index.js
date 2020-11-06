@@ -53,10 +53,6 @@ class AddMatch extends React.Component {
       player7_id, player8_id, player9_id, player10_id 
     } = this.state; 
 
-    let renderResponse = () => (
-      <Header as='h4'>{this.response}</Header>
-    );
-
     return (
       <div className="Add">
         <Form>
@@ -203,7 +199,7 @@ class AddMatch extends React.Component {
           </Grid>
           <Button onClick={ this.handleSubmit }>Add</Button>
         </Form>
-        <Header as='h4'>{this.response}</Header>
+        <Header as='h4'>{this.state.response}</Header>
         {/* <Input placeholder='Match ID' onChange={ this.handleChange } /> */}
       </div>
     );

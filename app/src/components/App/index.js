@@ -6,7 +6,7 @@ import ItemApp from '../ItemApp';
 import SearchHero from '../SearchHero';
 import AddMatch from '../AddMatch';
 import DeleteMatch from '../DeleteMatch'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { Dropdown, Header, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -91,7 +91,6 @@ class App extends React.Component {
             </Route>
           </Switch>
         </Router>
-        
         <Footer />
       </div>
     );

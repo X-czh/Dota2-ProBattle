@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import './styles.scss';
 import axios from 'axios'
-import { Input, Button } from 'semantic-ui-react'
+import { Input, Button, Header } from 'semantic-ui-react'
 
 class DeleteMatch extends React.Component {
   constructor(props) {
@@ -25,7 +25,10 @@ class DeleteMatch extends React.Component {
       id: this.state.id
     }
     axios.post('http://127.0.0.1:5000/deleteMatch', { match })
-      .then(response => console.log(response));
+      .then(response => {
+        this.setState({response: response});
+        console.log(response);
+      });
   }
 
   handleChange(event) {
@@ -39,6 +42,7 @@ class DeleteMatch extends React.Component {
       <div className="Delete">
         <Input placeholder='Match ID' onChange={ this.handleChange } />
         <Button onClick={ this.handleSubmit }>Delete</Button>
+        <Header as='h4'>{this.state.response.data}</Header>
       </div>
     );
   }
