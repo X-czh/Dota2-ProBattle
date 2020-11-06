@@ -29,7 +29,16 @@ class DataManager:
                     entry = items[key]
                     stmt = 'INSERT INTO Item VALUES(%s, %s)'
                     cursor.execute(stmt, (entry['id'], key))
-            conn.commit()
+
+                # insert special item with item_id 0 representing empty item
+                stmt = 'INSERT INTO Item VALUES(%s, %s)'
+                cursor.execute(stmt, (0, ""))
+
+                # insert special player with account_id 0 representing players 
+                # who do not make their match records public
+                stmt = 'INSERT INTO Player VALUES(%s, %s)'
+                cursor.execute(stmt, (0, ""))
+            self.conn.commit()
             msg = "Insert successfully!"
         except MySQLError as e:
             msg = "Got error {!r}, errno is {}".format(e, e.args[0])
@@ -38,8 +47,8 @@ class DataManager:
 
     def insert_recent_matches(self):
         matches = []
-        while len(matches) < 150:
-            matches.extend(opendota_api.get_recent_matches(use_last_match=True))
+        while len(matches) < 1:
+            matches.extend(self.opendota_api.get_recent_matches(use_last_match=True))
             time.sleep(3)
         
         for match in matches:
@@ -52,20 +61,27 @@ class DataManager:
             self.insert_match_with_player_stats(match['match_id'])
 
     def insert_match_with_player_stats(self, match_id):
-        match_info = opendota_api.get_match_info(match_id)
+        match_info = self.opendota_api.get_match_info(match_id)
 
         # insert match
         start_time = match_info['start_time']
         self._insert_match(match_id, start_time)
+        print(match_id)
 
         # insert player and player stats
         for player_stats in match_info['players']:
             account_id = player_stats['account_id']
-            personaname = player_stats['personaname']
+            if account_id is None:
+                account_id = 0 # special account_id for players who do not make their match records public
+            if 'personname' in player_stats:
+                personaname = player_stats['personaname']
+            else:
+                personaname = ""
             self._insert_player(account_id, personaname)
-            self._insert_player_stats(match_id, account_id, player_stats)
+            self._insert_plays_in(match_id, account_id, player_stats)
 
     def _insert_match(self, match_id, start_time):
+        print(f"inserting match - id: {match_id}, start_time: {start_time}")
         try:
             with self.conn.cursor() as cursor:
                 # query if such match exists
@@ -77,12 +93,13 @@ class DataManager:
                 else:
                     stmt = 'INSERT INTO Matches VALUES(%s, %s)'
                     cursor.execute(stmt, (match_id, start_time))
-            conn.commit()
+            self.conn.commit()
             print("[_insert_match] success")
         except MySQLError as e:
             print("[_insert_match] got error {!r}, errno is {}".format(e, e.args[0]))
 
     def _insert_player(self, account_id, personaname):
+        print(f"inserting player - id: {account_id}, personaname: {personaname}")
         try:
             with self.conn.cursor() as cursor:
                 # query if such player exists
@@ -92,14 +109,16 @@ class DataManager:
                 if data:
                     print("[_insert_player] player already exists")
                 else:
-                    stmt = 'INSERT INTO Player VALUES(%s, %s, %s)'
+                    stmt = 'INSERT INTO Player VALUES(%s, %s)'
                     cursor.execute(stmt, (account_id, personaname))
-            conn.commit()
+            self.conn.commit()
             print("[_insert_player] success")
         except MySQLError as e:
             print("[_insert_player] got error {!r}, errno is {}".format(e, e.args[0]))
 
     def _insert_plays_in(self, match_id, account_id, stats):
+        print(f"inserting plays_in - match id: {match_id}, account_id: {account_id}")
+        print(stats)
         try:
             with self.conn.cursor() as cursor:
                 # query if such plays_in record exists
@@ -109,7 +128,7 @@ class DataManager:
                 if data:
                     print("[_insert_plays_in] plays_in record already exists")
                 else:
-                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
                     cursor.execute(stmt, (
                             account_id,
                             match_id,
@@ -119,8 +138,6 @@ class DataManager:
                             stats['player_slot'],
                             stats['denies'],
                             stats['last_hits'],
-                            stats['damage_taken'],
-                            stats['damage'],
                             stats['gold_per_min'],
                             stats['xp_per_min'],
                             stats['hero_id'],
@@ -132,7 +149,7 @@ class DataManager:
                             stats['item_5'],
                             stats['win']
                         ))
-            conn.commit()
+            self.conn.commit()
             print("[_insert_plays_in] success")
         except MySQLError as e:
             print("[_insert_plays_in] got error {!r}, errno is {}".format(e, e.args[0]))

@@ -1,7 +1,7 @@
 USE dota2probattle;
 
 CREATE TABLE IF NOT EXISTS Matches (
-    match_id INT NOT NULL,
+    match_id BIGINT NOT NULL,
     start_time INT,
     PRIMARY KEY (match_id)
 );
@@ -19,22 +19,20 @@ CREATE TABLE IF NOT EXISTS Hero (
 );
 
 CREATE TABLE IF NOT EXISTS Player (
-    account_id INT,
+    account_id BIGINT,
     personaname VARCHAR(30),
     PRIMARY KEY (account_id)
 );
 
 CREATE TABLE IF NOT EXISTS Plays_in (
-    account_id INT,
-    match_id INT,
+    account_id BIGINT,
+    match_id BIGINT,
     kills INT,
     assists INT,
     deaths INT,
     player_slot INT,
     denies INT,
     last_hits INT,
-    damage_taken INT,
-    damage INT,
     gold_per_min FLOAT,
     xp_per_min FLOAT,
     hero_id INT,
@@ -80,7 +78,7 @@ CREATE TABLE IF NOT EXISTS Freq_items (
 
 CREATE TABLE IF NOT EXISTS Freq_heroes (
     hero_id INT,
-    account_id INT,
+    account_id BIGINT,
     winning_rate FLOAT,
     frequency FLOAT,
     PRIMARY KEY (hero_id, account_id),
