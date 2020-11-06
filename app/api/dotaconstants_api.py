@@ -1,7 +1,7 @@
 import json
 
 
-class DotaConstantsAPI():
+class DotaConstantsAPI:
 
     def get_heroes(self):
         with open('../dotaconstants/build/heroes.json') as f:

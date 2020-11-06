@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Plays_in (
     account_id INT,
     match_id INT,
     kills INT,
-    assistss INT,
+    assists INT,
     deaths INT,
     player_slot INT,
     denies INT,

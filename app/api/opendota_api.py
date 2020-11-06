@@ -3,7 +3,7 @@ import json
 import requests
 
 
-class OpenDotaAPI():
+class OpenDotaAPI:
 
     def __init__(self, verbose=False):
         self.verbose = verbose
@@ -37,6 +37,11 @@ class OpenDotaAPI():
     # Return a dictionary with match information
     def get_match_info(self, match_id):
         url = "https://api.opendota.com/api/matches/" + str(match_id)
+        return self._call(url, None)
+
+    # Return a dictionary with player information
+    def get_player_info(self, account_id):
+        url = "https://api.opendota.com/api/players/" + str(account_id)
         return self._call(url, None)
 
     # Return a list with player's match history (previous matches)
