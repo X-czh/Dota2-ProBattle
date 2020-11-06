@@ -121,7 +121,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player2 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player7_id' 
                     value={player7_id}
@@ -133,7 +133,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player3 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player3_id' 
                     value={player3_id}
@@ -144,7 +144,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player3 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player8_id' 
                     value={player8_id}
@@ -156,7 +156,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player4 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player4_id' 
                     value={player4_id}
@@ -167,7 +167,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player4 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player9_id' 
                     value={player9_id}
@@ -180,7 +180,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player5 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player5_id' 
                     value={player5_id}
@@ -191,7 +191,7 @@ class AddMatch extends React.Component {
               <Grid.Column width={8}>
                 <Form.Field>
                   <label>Player5 ID</label>
-                  <input 
+                  <Form.Input
                     placeholder='1' 
                     name='player10_id' 
                     value={player10_id}
