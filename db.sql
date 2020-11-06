@@ -2,8 +2,8 @@ USE dota2probattle;
 
 CREATE TABLE IF NOT EXISTS Matches (
     match_id INT NOT NULL,
-    start_time DATE,
-    result VARCHAR(30),
+    start_time INT,
+    result BOOLEAN,
     PRIMARY KEY (match_id)
 );
 
