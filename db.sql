@@ -3,7 +3,6 @@ USE dota2probattle;
 CREATE TABLE IF NOT EXISTS Matches (
     match_id INT NOT NULL,
     start_time INT,
-    result BOOLEAN,
     PRIMARY KEY (match_id)
 );
 
@@ -45,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Plays_in (
     item_3 INT,
     item_4 INT,
     item_5 INT,
+    result BOOLEAN,
     PRIMARY KEY (account_id, match_id),
     FOREIGN KEY (account_id) REFERENCES Player(account_id)
         ON DELETE CASCADE,

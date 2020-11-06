@@ -56,8 +56,7 @@ class DataManager:
 
         # insert match
         start_time = match_info['start_time']
-        result = 1 if match_info['radiant_win'] else 0
-        self._insert_match(match_id, start_time, result)
+        self._insert_match(match_id, start_time)
 
         # insert player and player stats
         for player_stats in match_info['players']:
@@ -66,7 +65,7 @@ class DataManager:
             self._insert_player(account_id, personaname)
             self._insert_player_stats(match_id, account_id, player_stats)
 
-    def _insert_match(self, match_id, start_time, result):
+    def _insert_match(self, match_id, start_time):
         try:
             with self.conn.cursor() as cursor:
                 # query if such match exists
@@ -76,8 +75,8 @@ class DataManager:
                 if data:
                     print("[_insert_match] match already exists")
                 else:
-                    stmt = 'INSERT INTO Matches VALUES(%s, %s, %s)'
-                    cursor.execute(stmt, (match_id, start_time, result))
+                    stmt = 'INSERT INTO Matches VALUES(%s, %s)'
+                    cursor.execute(stmt, (match_id, start_time))
             conn.commit()
             print("[_insert_match] success")
         except MySQLError as e:
@@ -110,7 +109,7 @@ class DataManager:
                 if data:
                     print("[_insert_plays_in] plays_in record already exists")
                 else:
-                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
                     cursor.execute(stmt, (
                             account_id,
                             match_id,
@@ -131,6 +130,7 @@ class DataManager:
                             stats['item_3'],
                             stats['item_4'],
                             stats['item_5'],
+                            stats['win']
                         ))
             conn.commit()
             print("[_insert_plays_in] success")
