@@ -1,0 +1,4 @@
+[submodule "app/dotaconstants"]
+	path = app/dotaconstants
+	url = https://github.com/odota/dotaconstants.git
+	branch = master

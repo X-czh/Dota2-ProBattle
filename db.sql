@@ -1,3 +1,5 @@
+USE dota2probattle;
+
 CREATE TABLE IF NOT EXISTS Matches (
     match_id INT NOT NULL,
     start_time DATE,
@@ -63,6 +65,6 @@ CREATE TABLE IF NOT EXISTS Freq_heroes (
     PRIMARY KEY (hero_id, account_id),
     FOREIGN KEY (hero_id) REFERENCES Hero(hero_id)
         ON DELETE CASCADE,
-    FOREIGN KEY (account_id) REFERENCES Player(account_idD)
+    FOREIGN KEY (account_id) REFERENCES Player(account_id)
         ON DELETE CASCADE
 );
