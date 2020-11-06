@@ -17,7 +17,8 @@ export default class HeroInput extends Component{
     }
 
     handleSubmit = (event) => {
-        this.props.submitId(this.state.idInput)
+        const id = this.state
+        this.props.submitId(id)
         this.setState({idInput:''})
         event.preventDefault()
     }
