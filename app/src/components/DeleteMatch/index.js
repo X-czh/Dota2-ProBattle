@@ -24,7 +24,7 @@ class DeleteMatch extends React.Component {
     const match = {
       id: this.state.id
     }
-    axios.post('http://127.0.0.1:5000/searchMatch', { match })
+    axios.post('http://127.0.0.1:5000/deleteMatch', { match })
       .then(response => console.log(response));
   }
 
