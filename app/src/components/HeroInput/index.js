@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import { Input, Button, Header } from 'semantic-ui-react'
 
 export default class HeroInput extends Component{
     static propTypes = {
@@ -10,12 +11,12 @@ export default class HeroInput extends Component{
         idInput:''
     }
 
-    handleId = (event) => {
+    handleChange = (event) => {
         const idInput = event.target.value
         this.setState({idInput})  
     }
 
-    handleInput = (event) => {
+    handleSubmit = (event) => {
         this.props.submitId(this.state.idInput)
         this.setState({idInput:''})
         event.preventDefault()
@@ -25,9 +26,12 @@ export default class HeroInput extends Component{
         const {idInput} = this.state
         return(
             <div>
-                <h3>Opponent's account id</h3>
-                    <input type="text" value={idInput} onChange={this.handleId} />
-                <button onClick = {this.handleInput}>Click</button>
+                <Header as='h3'>Opponent's account id</Header>
+                <Input 
+                    value={idInput}
+                    onChange={this.handleChange} 
+                />
+                <Button onClick = {this.handleSubmit}>Click</Button>
             </div>
         )
     }

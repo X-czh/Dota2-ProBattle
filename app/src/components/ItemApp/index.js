@@ -3,6 +3,7 @@ import ItemSearch from '../ItemSearch/index'
 import ItemList from '../ItemList/index'
 import './styles.scss';
 import axios from 'axios'
+import { Header } from 'semantic-ui-react'
 
 export default class ItemApp extends Component {
   state = {
@@ -27,7 +28,7 @@ export default class ItemApp extends Component {
     const {items} = this.state
     return (
       <div>
-        <h2>Recommendation of item</h2>
+        <Header as='h2'>Recommendation of item</Header>
         <ItemSearch itemSearch = {this.itemSearch}/>
         <ItemList items={items} />
       </div>
