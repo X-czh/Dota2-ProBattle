@@ -13,7 +13,10 @@ export default class HeroInput extends Component{
 
     handleChange = (event) => {
         const idInput = event.target.value
-        this.setState({idInput})  
+        const re = /[0-9]+/
+        if(re.test(idInput)){
+            this.setState({idInput})  
+        }
     }
 
     handleSubmit = (event) => {
