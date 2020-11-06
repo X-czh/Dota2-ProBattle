@@ -110,7 +110,7 @@ class DataManager:
                 if data:
                     print("[_insert_plays_in] plays_in record already exists")
                 else:
-                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+                    stmt = 'INSERT INTO Plays_in VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
                     cursor.execute(stmt, (
                             account_id,
                             match_id,
@@ -123,7 +123,14 @@ class DataManager:
                             stats['damage_taken'],
                             stats['damage'],
                             stats['gold_per_min'],
-                            stats['xp_per_min']
+                            stats['xp_per_min'],
+                            stats['hero_id'],
+                            stats['item_0'],
+                            stats['item_1'],
+                            stats['item_2'],
+                            stats['item_3'],
+                            stats['item_4'],
+                            stats['item_5'],
                         ))
             conn.commit()
             print("[_insert_plays_in] success")

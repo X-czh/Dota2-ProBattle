@@ -38,10 +38,31 @@ CREATE TABLE IF NOT EXISTS Plays_in (
     damage INT,
     gold_per_min FLOAT,
     xp_per_min FLOAT,
+    hero_id INT,
+    item_0 INT,
+    item_1 INT,
+    item_2 INT,
+    item_3 INT,
+    item_4 INT,
+    item_5 INT,
     PRIMARY KEY (account_id, match_id),
     FOREIGN KEY (account_id) REFERENCES Player(account_id)
         ON DELETE CASCADE,
     FOREIGN KEY (match_id) REFERENCES Matches(match_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (hero_id) REFERENCES Hero(hero_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_0) REFERENCES Item(item_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_1) REFERENCES Item(item_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_2) REFERENCES Item(item_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_3) REFERENCES Item(item_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_4) REFERENCES Item(item_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (item_5) REFERENCES Item(item_id)
         ON DELETE CASCADE
 );
 
