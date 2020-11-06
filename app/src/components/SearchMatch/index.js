@@ -42,13 +42,13 @@ class SearchMatch extends React.Component {
 
   handleSubmit() {
     let params = {};
-    if (this.state.searchType === "matchID") {
+    if (this.state.searchType === "MatchID") {
       params = { id: this.state.matchID };
     } else {
       params = { id: this.state.accountID };
     }
     console.log(params)
-    axios.post('http://127.0.0.1:5000/' + this.state.searchType, { params })
+    axios.post('http://127.0.0.1:5000/searchMatchBy' + this.state.searchType, { params })
       .then(response => {
         this.setState({response: response});
         console.log(response);
@@ -58,7 +58,7 @@ class SearchMatch extends React.Component {
   render() {
     const { matchID, accountID, response, searchType } = this.state;
     
-    if (searchType === 'matchID') {
+    if (searchType === 'MatchID') {
       return (
         <div className="Search">
           <Form>
@@ -74,7 +74,7 @@ class SearchMatch extends React.Component {
           </Form>
         </div>
       );
-    } else if (searchType === 'accountID') {
+    } else if (searchType === 'AccountID') {
       return (
         <div className="Search">
           <Form>

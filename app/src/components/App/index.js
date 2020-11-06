@@ -105,10 +105,10 @@ class App extends React.Component {
               <ItemApp />
             </Route>
             <Route path="/searchMatchByMatchID">
-              <SearchMatch searchType="matchID" />
+              <SearchMatch searchType="MatchID" />
             </Route>
             <Route path="/searchMatchByAccountID">
-              <SearchMatch searchType="accountID" />
+              <SearchMatch searchType="AccountID" />
             </Route>
             <Route path="/addMatchByMatchID">
               <AddMatch />
