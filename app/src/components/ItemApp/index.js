@@ -27,7 +27,7 @@ export default class ItemApp extends Component {
       <div>
         <h2>Recommendation of item</h2>
         <ItemSearch itemSearch={this.itemSearch}/>
-        <ItemList />
+        {/* <ItemList /> */}
       </div>
     );
   }

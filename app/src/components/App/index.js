@@ -4,7 +4,8 @@ import MyHeader from '../MyHeader';
 import Footer from '../Footer';
 import ItemApp from '../ItemApp';
 import SearchHero from '../SearchHero';
-import SearchMatch from '../SearchMatch';
+import AddMatch from '../AddMatch';
+import DeleteMatch from '../DeleteMatch'
 import { Dropdown, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
@@ -15,6 +16,9 @@ import {
 
 
 class App extends React.Component {
+  componentDidMount() {
+    document.title = "Dota2 ProBattle"
+  }
 
   constructor(props) {
     super(props);
@@ -37,22 +41,28 @@ class App extends React.Component {
               onClick={this.handleItemClick}>
               Items
             </Menu.Item>
-            <Menu.Item 
+            {/* <Menu.Item 
               as={ Link }
               name="hero"
               active={activeItem === 'hero'}
               to="/hero"
               onClick={this.handleItemClick}>
               Hero
-            </Menu.Item>
-            <Menu.Item 
-              as={ Link }
-              name="match"
-              active={activeItem === 'match'}
-              to="/match"
-              onClick={this.handleItemClick}>
-              Match
-            </Menu.Item>
+            </Menu.Item> */}
+            <Dropdown text="Match" pointing className='link item'>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                text="Add match"
+                as = { Link }
+                name="addMatch"
+                to="/addMatch" />
+                <Dropdown.Item
+                text="Delete match"
+                as = { Link }
+                name="deleteMatch"
+                to="/deleteMatch" />
+              </Dropdown.Menu>
+            </Dropdown>
             <Dropdown text="Battle Guide" pointing className='link item'>
               <Dropdown.Menu>
                 <Dropdown.Header>Basic</Dropdown.Header>
@@ -70,11 +80,14 @@ class App extends React.Component {
             <Route path="/item" >
               <ItemApp />
             </Route>
-            <Route path="/hero" >
+            {/* <Route path="/hero" >
               <SearchHero />
+            </Route> */}
+            <Route path="/addMatch">
+              <AddMatch />
             </Route>
-            <Route path="/match">
-              <SearchMatch />
+            <Route path="/deleteMatch">
+              <DeleteMatch />
             </Route>
           </Switch>
         </Router>

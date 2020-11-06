@@ -6,7 +6,7 @@ import Body from "../Body";
 class Footer extends React.Component{
     render() {
         return (
-            <footer>Author:</ footer>
+            <footer></ footer>
         )
     }
 }

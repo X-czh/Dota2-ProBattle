@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/
+.idea/*
+node_modules
+node_modules/*
+public/
+public/*
+.DS_Store
+dist/
+dist/*
+build
+build/*
+yarn.lock
