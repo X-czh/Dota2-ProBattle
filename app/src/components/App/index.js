@@ -3,7 +3,7 @@ import Body from '../Body';
 import MyHeader from '../MyHeader';
 import Footer from '../Footer';
 import ItemApp from '../ItemApp';
-import SearchHero from '../SearchHero';
+import HeroApp from '../HeroApp';
 import AddMatch from '../AddMatch';
 import DeleteMatch from '../DeleteMatch'
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
@@ -41,14 +41,6 @@ class App extends React.Component {
               onClick={this.handleItemClick}>
               Items
             </Menu.Item>
-            {/* <Menu.Item 
-              as={ Link }
-              name="hero"
-              active={activeItem === 'hero'}
-              to="/hero"
-              onClick={this.handleItemClick}>
-              Hero
-            </Menu.Item> */}
             <Dropdown text="Match" pointing className='link item'>
               <Dropdown.Menu>
                 <Dropdown.Item
@@ -66,9 +58,17 @@ class App extends React.Component {
             <Dropdown text="Battle Guide" pointing className='link item'>
               <Dropdown.Menu>
                 <Dropdown.Header>Basic</Dropdown.Header>
-                <Dropdown.Item>Opponents' signature heroes</Dropdown.Item>
+                <Dropdown.Item
+                text="Opponents' signature heroes"
+                as = { Link }
+                name="HeroApp"
+                to="/HeroApp" />
                 <Dropdown.Header>Advanced</Dropdown.Header>
-                <Dropdown.Item>Winning Chance Prediction</Dropdown.Item>
+                <Dropdown.Item
+                text="Winning Chance Prediction"
+                as = { Link }
+                name=""
+                to="/addMatch" />
               </Dropdown.Menu>
             </Dropdown>
            
@@ -80,14 +80,14 @@ class App extends React.Component {
             <Route path="/item" >
               <ItemApp />
             </Route>
-            {/* <Route path="/hero" >
-              <SearchHero />
-            </Route> */}
             <Route path="/addMatch">
               <AddMatch />
             </Route>
             <Route path="/deleteMatch">
               <DeleteMatch />
+            </Route>
+            <Route path="/HeroApp">
+              <HeroApp />
             </Route>
           </Switch>
         </Router>
