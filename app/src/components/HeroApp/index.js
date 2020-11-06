@@ -21,7 +21,7 @@ export default class HeroApp extends Component{
             .catch(err => console.log(err))
     }
     render(){
-        const {heros} = this.state
+        const {heroes} = this.state
         return(
             <div>
                 <h2>Opponents' signature heroes</h2>
