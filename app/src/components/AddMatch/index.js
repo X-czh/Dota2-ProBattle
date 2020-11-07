@@ -13,6 +13,7 @@ class AddMatch extends React.Component {
       MatchID: '', 
       AccountID: '',
       response: '',
+      active: '',
       addType: props.addType
     }
   }
@@ -21,7 +22,10 @@ class AddMatch extends React.Component {
     console.log(nextProps);
     const { addType } = this.props.addType;
     if (nextProps.addType !== addType ) {
-      this.setState({ addType: nextProps.addType })
+      this.setState({ 
+        addType: nextProps.addType,
+        active: false
+      })
     }
   }
 
@@ -77,7 +81,7 @@ class AddMatch extends React.Component {
           </Form.Field>
           <Button onClick={this.handleSubmit}>Add</Button>
         </Form>
-        {/* <Loader active={this.state.active}>Loading</Loader> */}
+        <Loader active={this.state.active}>Loading</Loader>
         <Header as='h4'>{this.state.response.data}</Header>
       </div>
     );
