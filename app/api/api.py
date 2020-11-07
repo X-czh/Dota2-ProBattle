@@ -46,7 +46,7 @@ def add_match_by_match_id():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
     return msg
@@ -66,7 +66,7 @@ def add_match_by_account_id():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
     return msg
@@ -88,7 +88,7 @@ def update_match():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
     return msg
@@ -119,7 +119,7 @@ def delete_match():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
     return msg
@@ -127,6 +127,7 @@ def delete_match():
 
 @app.route('/searchMatchByMatchID', methods=['POST'])
 def search_match_by_match_id():
+    data = []
     try:
         form = request.get_json()['params']
         match_id = form['id']
@@ -144,12 +145,9 @@ def search_match_by_match_id():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
-    
-    if data is None:
-        data = []
     # only show the date; convert to string
     for e in data:
         e['start_time'] = e['start_time'].strftime("%m/%d/%Y")
@@ -158,6 +156,7 @@ def search_match_by_match_id():
 
 @app.route('/searchMatchByAccountID', methods=['POST'])
 def search_match_account_id():
+    data = []
     try:
         form = request.get_json()['params']
         account_id = form['id']
@@ -175,12 +174,9 @@ def search_match_account_id():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
-
-    if data is None:
-        data = []
     # only show the date; convert to string
     for e in data:
         e['start_time'] = e['start_time'].strftime("%m/%d/%Y")
@@ -189,6 +185,7 @@ def search_match_account_id():
 
 @app.route('/debuffOpponentHero', methods=['POST'])
 def debuff_opponent_hero():
+    data = []
     try:
         account_id = request.get_json()['idInput']
         with conn.cursor() as cursor:
@@ -208,17 +205,15 @@ def debuff_opponent_hero():
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
-    
-    if data is None:
-        data = []
     return json.dumps(data)
 
 
 @app.route('/debuffOpponentItem', methods=['POST'])
 def debuff_opponent_item():
+    data = []
     try:
         # parse form
         form = request.get_json()['heros']
@@ -227,28 +222,59 @@ def debuff_opponent_item():
 
         # query
         with conn.cursor() as cursor:
+            print('B')
             stmt = (
-                'SELECT hero_name, COUNT(*) AS num_games, ROUND(SUM(result) / COUNT(*), 2) AS win_rate\n'
-                'FROM Plays_in NATURAL JOIN Hero\n'
-                'WHERE account_id = %s\n'
-                'GROUP BY hero_id\n'
-                'ORDER BY num_games DESC, win_rate DESC\n'
-                'LIMIT 10'
+                'SELECT item_name, SUM(win_rate) AS aggregated_win_rate\n'
+                'FROM(\n'
+                    'SELECT hero, item_id, opponent, ROUND(SUM(result) / COUNT(*), 2) AS win_rate\n'
+                    'FROM(\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_0 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        'UNION\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_1 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        'UNION\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_2 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        'UNION\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_3 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        'UNION\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_4 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        'UNION\n'
+                        '(SELECT T1.hero_id AS hero, T1.item_5 AS item_id, T2.hero_id AS opponent, T1.result AS result\n'
+                        'FROM Plays_in AS T1, Plays_in AS T2\n'
+                        'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
+                        ') AS T\n'
+                    'GROUP BY hero, item_id, opponent\n'
+                    ') AS S NATURAL JOIN Item\n'
+                'WHERE hero = %s AND opponent IN (%s, %s, %s, %s, %s)\n'
+                'GROUP BY item_id\n'
+                'ORDER BY aggregated_win_rate DESC'
             )
-            cursor.execute(stmt, (my_hero))
+            print("A")
+            print(stmt)
+            cursor.execute(stmt, (my_hero, opponent_heroes[0], opponent_heroes[1], 
+                opponent_heroes[2], opponent_heroes[3], opponent_heroes[4]))
+            print("A")
             data = cursor.fetchall()
+            print(data)
+            print("A")
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
     except MySQLError as me:
         msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
-    finally:
+    else:
         msg = "Success"
     print(msg)
-    
-    if data is None:
-        data = []
     return json.dumps(data)
 
 

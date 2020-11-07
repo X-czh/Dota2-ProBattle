@@ -2,10 +2,12 @@
 
 ## Dependency
 
-* Node.js
-* Yarn
-* Python 3.8
-* MySQL 8.0
+This project is developed and tested with
+
+* Node 14.15.0
+* Yarn 1.22.5
+* Python 3.8.5
+* MySQL 8.0.22
 
 ## Install
 

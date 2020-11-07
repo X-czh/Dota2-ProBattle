@@ -98,7 +98,6 @@ class DataManager:
         self.conn.commit()
         print("[_insert_match] success")
 
-
     def _insert_player(self, account_id, personaname):
         print(f"inserting player - id: {account_id}, personaname: {personaname}")
         with self.conn.cursor() as cursor:
