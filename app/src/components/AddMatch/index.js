@@ -62,7 +62,7 @@ class AddMatch extends React.Component {
   }
 
   render() {
-    const { MatchID, AccountID, response, addType } = this.state; 
+    const { MatchID, AccountID, response, active, addType } = this.state; 
     
     let IDType = addType.substring(0, addType.length-2);
     let value_ = '';
@@ -85,8 +85,8 @@ class AddMatch extends React.Component {
           </Form.Field>
           <Button onClick={this.handleSubmit}>Add</Button>
         </Form>
-        <Loader active={this.state.active}>Loading</Loader>
-        <Header as='h4'>{this.state.response.data}</Header>
+        <Loader active={active}>Loading</Loader>
+        <Header as='h4'>{response}</Header>
       </div>
     );
   }
