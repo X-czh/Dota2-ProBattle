@@ -14,10 +14,16 @@ export default class ItemList extends Component{
                 <div>
                     <h3>Recommended items:</h3>
                     <ul>
-                        <li>There might be something wrong with your input, please check the heroes you input.</li>
                     </ul>
                 </div>
             )
+        } else if (items[0].wrong == 0) {
+                <div>
+                    <h3>Opponent's most used heroes</h3>
+                    <ul>
+                        <li>There might be something wrong with your input, please check the heroes you input.</li>
+                    </ul>
+                </div> 
         } else {
             return(
                 <div>
