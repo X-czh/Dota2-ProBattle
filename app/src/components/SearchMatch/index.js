@@ -89,7 +89,7 @@ class SearchMatch extends React.Component {
               <Item.Content>
                 <Item.Header as='h4'>{match.match_id}</Item.Header>
                 <Item.Description>
-                  <p>{match.date}</p>
+                  <p>{match.start_time}</p>
                 </Item.Description>
               </Item.Content>
             </Item>

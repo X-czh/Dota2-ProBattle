@@ -17,7 +17,7 @@ CORS(app, support_credentials=True)
 # Configure MySQL
 conn = pymysql.connect(host='localhost',
                        user='root',
-                       password='Dota2ProBattlePWD',
+                       password='',
                        db='dota2probattle',
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
