@@ -45,10 +45,14 @@ class AddMatch extends React.Component {
       params = { id: this.state.AccountID };
     }
     console.log(params);
+    this.setState({ active: true });
     axios.post('http://127.0.0.1:5000/addMatchBy' + this.state.addType, { params })
       .then(response => {
         console.log(response);
-        this.setState({ response: response.data})
+        this.setState({ 
+          response: response.data,
+          active: false
+        })
       });
   }
 
