@@ -9,15 +9,30 @@ export default class HeroOutput extends Component{
 
     render(){
         const {heroes} = this.props
-        return(
-            <div>
-                <h3>Opponent's most used heroes</h3>
-                <ul>
-                    {heroes.map( (hero,index) => (
-                        <li key={index}>Hero: {hero.hero_name}, number of games: {hero.num_games}, winning rate: {hero.win_rate}</li>))
-                    }
-                </ul>
-            </div> 
-        )
+        if(heroes == []){
+            return(
+                <div>
+                    <h3>Opponent's most used heroes</h3>
+                    <ul>
+                        <li>Invalid account ID or no recent matches</li>
+                    </ul>
+                </div> 
+            )
+        } else {
+            return(
+                <div>
+                    <h3>Opponent's most used heroes</h3>
+                    <ul>
+                        {heroes.map( (hero,index) => (
+                            <li key={index}>
+                                Hero: {hero.hero_name}, number of games: {hero.num_games}, winning rate: {hero.win_rate}
+                            </li>)
+                            )
+                        }
+                        <li>{}</li>
+                    </ul>
+                </div> 
+            )
+        }
     }
 }
