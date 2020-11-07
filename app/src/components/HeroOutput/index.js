@@ -19,12 +19,14 @@ export default class HeroOutput extends Component{
                 </div> 
             )
         } else if (heroes[0] === 0) {
+            return(
                 <div>
                     <h3>Opponent's most used heroes</h3>
                     <ul>
                          <li>Invalid account ID or no recent matches</li>
                     </ul>
                 </div> 
+            )
         } else {
             return(
                 <div>
