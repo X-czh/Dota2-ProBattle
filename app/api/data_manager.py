@@ -42,7 +42,7 @@ class DataManager:
 
     def insert_recent_matches(self):
         matches = []
-        while len(matches) < 1:
+        while len(matches) < 100:
             matches.extend(self.opendota_api.get_recent_matches(use_last_match=True))
             time.sleep(3)
         

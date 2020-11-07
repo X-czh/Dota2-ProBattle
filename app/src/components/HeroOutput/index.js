@@ -9,7 +9,7 @@ export default class HeroOutput extends Component{
 
     render(){
         const {heroes} = this.props
-        if(heroes == []){
+        if(heroes.length == 0){
             return(
                 <div>
                     <h3>Opponent's most used heroes</h3>
