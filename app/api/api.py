@@ -35,6 +35,7 @@ def home():
 @app.route('/addMatchByMatchID', methods=['POST'])
 def add_match_by_match_id():
     try:
+        print(request.get_json())
         form = request.get_json()['params']
         match_id = form['id']
         data_manager.insert_match_with_player_stats(match_id)
@@ -185,7 +186,6 @@ def search_match_account_id():
 
 @app.route('/debuffOpponentHero', methods=['POST'])
 def debuff_opponent_hero():
-    data = []
     try:
         account_id = request.get_json()['idInput']
         with conn.cursor() as cursor:
@@ -208,12 +208,13 @@ def debuff_opponent_hero():
     else:
         msg = "Success"
     print(msg)
+    if msg != "Success":
+        data = [{'wrong':0}]
     return json.dumps(data)
 
 
 @app.route('/debuffOpponentItem', methods=['POST'])
 def debuff_opponent_item():
-    data = []
     try:
         # parse form
         form = request.get_json()['heros']
@@ -258,14 +259,9 @@ def debuff_opponent_item():
                 'GROUP BY item_id\n'
                 'ORDER BY aggregated_win_rate DESC'
             )
-            print("A")
-            print(stmt)
             cursor.execute(stmt, (my_hero, opponent_heroes[0], opponent_heroes[1], 
                 opponent_heroes[2], opponent_heroes[3], opponent_heroes[4]))
-            print("A")
             data = cursor.fetchall()
-            print(data)
-            print("A")
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
     except MySQLError as me:
@@ -275,6 +271,9 @@ def debuff_opponent_item():
     else:
         msg = "Success"
     print(msg)
+    if msg != "Success":
+        data = [{'wrong':0}]
+    print(data)
     return json.dumps(data)
 
 
