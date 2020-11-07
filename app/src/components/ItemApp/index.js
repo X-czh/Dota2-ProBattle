@@ -7,7 +7,6 @@ import { Header } from 'semantic-ui-react'
 
 export default class ItemApp extends Component {
   state = {
-    heros: '',
     items: []
   }
 
@@ -16,7 +15,7 @@ export default class ItemApp extends Component {
     const url = 'http://127.0.0.1:5000/debuffOpponentItem'
     axios.post(url, allhero)
       .then(res => {
-        items = Object.values(res.data)
+        items = res.data
         this.setState({items})
         console.log('response: ',items)
       })
