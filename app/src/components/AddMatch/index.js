@@ -19,7 +19,8 @@ class AddMatch extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
-    if (nextProps.addType !== this.state.addType ) {
+    const { addType } = this.props.addType;
+    if (nextProps.addType !== addType ) {
       this.setState({ addType: nextProps.addType })
     }
   }
@@ -39,6 +40,7 @@ class AddMatch extends React.Component {
     } else {
       params = { id: this.state.AccountID };
     }
+    console.log(params);
     axios.post('http://127.0.0.1:5000/addMatchBy' + this.state.addType, { params })
       .then(response => {
         console.log(response);

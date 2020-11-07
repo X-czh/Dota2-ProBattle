@@ -122,7 +122,7 @@ class App extends React.Component {
               <AddMatch addType="MatchID" />
             </Route>
             <Route path="/addMatchByAccountID">
-              <AddMatch addType="MatchID" />
+              <AddMatch addType="AccountID" />
             </Route>
             <Route path="/updateMatch">
               <UpdateMatch />
