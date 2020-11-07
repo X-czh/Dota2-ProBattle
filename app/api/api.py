@@ -186,6 +186,7 @@ def search_match_account_id():
 
 @app.route('/debuffOpponentHero', methods=['POST'])
 def debuff_opponent_hero():
+    data = []
     try:
         account_id = request.get_json()['idInput']
         with conn.cursor() as cursor:
@@ -208,13 +209,14 @@ def debuff_opponent_hero():
     else:
         msg = "Success"
     print(msg)
-    if msg != "Success":
-        data = [{'wrong':0}]
+    if len(data) == 0:
+        data = [0]
     return json.dumps(data)
 
 
 @app.route('/debuffOpponentItem', methods=['POST'])
 def debuff_opponent_item():
+    data = []
     try:
         # parse form
         form = request.get_json()['heros']
@@ -223,7 +225,6 @@ def debuff_opponent_item():
 
         # query
         with conn.cursor() as cursor:
-            print('B')
             stmt = (
                 'SELECT item_name, SUM(win_rate) AS aggregated_win_rate\n'
                 'FROM(\n'
@@ -271,8 +272,8 @@ def debuff_opponent_item():
     else:
         msg = "Success"
     print(msg)
-    if msg != "Success":
-        data = [{'wrong':0}]
+    if len(data) == 0:
+        data = [0]
     print(data)
     return json.dumps(data)
 

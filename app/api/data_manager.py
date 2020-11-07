@@ -44,14 +44,14 @@ class DataManager:
         matches = []
         while len(matches) < 100:
             matches.extend(self.opendota_api.get_recent_matches(use_last_match=True))
-            time.sleep(3)
+            time.sleep(2)
         
         for match in matches:
             self.insert_match_with_player_stats(match['match_id'])
-            time.sleep(3)
+            time.sleep(2)
 
     def insert_player_with_recent_matches(self, account_id):
-        matches = self.opendota_api.get_player_matches_history(account_id)
+        matches = self.opendota_api.get_player_recent_matches(account_id)
 
         # sanity check
         if (len(matches) == 0):
@@ -59,13 +59,14 @@ class DataManager:
 
         for match in matches:
             self.insert_match_with_player_stats(match['match_id'])
+            time.sleep(2)
 
     def insert_match_with_player_stats(self, match_id):
         match_info = self.opendota_api.get_match_info(match_id)
-
+        
         # sanity check
         if 'error' in match_info:
-            raise ValueError("Invalid match id")
+            raise ValueError(match_info['error'])
 
         # insert match
         start_time = match_info['start_time']

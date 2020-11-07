@@ -44,6 +44,11 @@ class OpenDotaAPI:
         url = "https://api.opendota.com/api/players/" + str(account_id)
         return self._call(url, None)
 
+    # Return a list with player's recent matches
+    def get_player_recent_matches(self, account_id):
+        url = "https://api.opendota.com/api/players/{}/recentMatches".format(account_id)
+        return self._call(url, None)
+
     # Return a list with player's match history (previous matches)
     def get_player_matches_history(self, account_id):
         url = "https://api.opendota.com/api/players/{}/matches".format(account_id)
