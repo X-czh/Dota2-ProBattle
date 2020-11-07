@@ -17,7 +17,7 @@ CORS(app, support_credentials=True)
 # Configure MySQL
 conn = pymysql.connect(host='localhost',
                        user='root',
-                       password='',
+                       password='Dota2ProBattlePWD',
                        db='dota2probattle',
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
@@ -75,9 +75,9 @@ def add_match_by_account_id():
 @app.route('/updateMatch', methods=['POST'])
 def update_match():
     try:
-        form = request.get_json()['match']
-        match_id = form['match_id']
-        start_time = form['start_time']
+        form = request.get_json()['params']
+        match_id = form['MatchID']
+        start_time = form['startTime']
         with conn.cursor() as cursor:
             stmt = 'UPDATE Matches SET start_time = UNIX_TIMESTAMP(%s) WHERE match_id = %s'
             cursor.execute(stmt, (start_time, match_id))
