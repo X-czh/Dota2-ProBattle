@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import './styles.scss';
 import axios from 'axios';
-import { Form, Button, Item, Loader } from 'semantic-ui-react';
+import { Form, Button, Item, Loader, Message } from 'semantic-ui-react';
 
 
 class SearchMatch extends React.Component {
@@ -15,6 +15,7 @@ class SearchMatch extends React.Component {
       MatchID: '', 
       AccountID: '',
       response: [], 
+      afterSearch: false,
       active: false,
       searchType: props.searchType 
     }
@@ -24,7 +25,11 @@ class SearchMatch extends React.Component {
     const { searchType } = this.props.searchType
     console.log(nextProps);
     if (nextProps.searchType !== searchType ) {
-      this.setState({ searchType: nextProps.searchType })
+      this.setState({ 
+        searchType: nextProps.searchType,
+        active: false,
+        afterSearch: false
+      })
     }
   }
 
@@ -52,14 +57,17 @@ class SearchMatch extends React.Component {
     this.setState({active: true})
     axios.post('http://127.0.0.1:5000/searchMatchBy' + this.state.searchType, { params })
       .then(response => {
-        this.setState({response: response.data});
-        this.setState({active: false});
+        this.setState({
+          response: response.data, 
+          active: false,
+          afterSearch: true
+        });
         console.log(response.data);
       });
   }
 
   render() {
-    const { MatchID, AccountID, response, searchType } = this.state;
+    const { MatchID, AccountID, response, afterSearch, searchType } = this.state;
     
     let IDType = searchType.substring(0, searchType.length-2);
     let value_ = '';
@@ -84,6 +92,10 @@ class SearchMatch extends React.Component {
         </Form>
         <Loader active={this.state.active}>Loading</Loader>
         <Item.Group divided>
+          {afterSearch && response.length === 0 ? 
+            <Message>
+              <Message.Header>No match found</Message.Header>
+            </Message> : <div></div>} 
           {this.state.response.map((match) => (
             <Item>
               <Item.Content>

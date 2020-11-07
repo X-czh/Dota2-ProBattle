@@ -39,7 +39,7 @@ class AddMatch extends React.Component {
 
   handleSubmit() {
     let params = {};
-    if (this.state.searchType === "MatchID") {
+    if (this.state.addType === "MatchID") {
       params = { id: this.state.MatchID };
     } else {
       params = { id: this.state.AccountID };
