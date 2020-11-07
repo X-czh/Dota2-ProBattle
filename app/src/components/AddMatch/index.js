@@ -13,7 +13,7 @@ class AddMatch extends React.Component {
       MatchID: '', 
       AccountID: '',
       response: '',
-      active: '',
+      active: false,
       addType: props.addType
     }
   }
