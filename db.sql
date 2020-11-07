@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS dota2probattle;
+CREATE DATABASE dota2probattle;
+
 USE dota2probattle;
 
 CREATE TABLE IF NOT EXISTS Matches (
