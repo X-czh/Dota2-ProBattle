@@ -23,10 +23,10 @@ class SearchMatch extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { searchType } = this.props.searchType
     console.log(nextProps);
-     if (nextProps.searchType !== searchType ) {
-       this.setState({ searchType: nextProps.searchType })
-     }
+    if (nextProps.searchType !== searchType ) {
+      this.setState({ searchType: nextProps.searchType })
     }
+  }
 
   static propTypes = {
     onChange: PropTypes.func
@@ -52,7 +52,7 @@ class SearchMatch extends React.Component {
     this.setState({active: true})
     axios.post('http://127.0.0.1:5000/searchMatchBy' + this.state.searchType, { params })
       .then(response => {
-        this.setState({response: response});
+        this.setState({response: response.data});
         this.setState({active: false});
         console.log(response);
       });

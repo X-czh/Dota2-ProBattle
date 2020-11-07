@@ -7,6 +7,7 @@ import HeroApp from '../HeroApp';
 import AddMatch from '../AddMatch';
 import DeleteMatch from '../DeleteMatch';
 import SearchMatch from '../SearchMatch';
+import UpdateMatch from '../UpdateMatch';
 import { Dropdown, Header, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
@@ -70,13 +71,20 @@ class App extends React.Component {
                     name="addMatchByAccountID"
                     to="/addMatchByAccountID" 
                   />
-                <Dropdown.Header>Delete</Dropdown.Header>
-
+                <Dropdown.Header>Update</Dropdown.Header>
                 <Dropdown.Item
-                text="Delete match"
-                as = { Link }
-                name="deleteMatch"
-                to="/deleteMatch" />
+                  text="Update start time"
+                  as = { Link }
+                  name="updateMatch"
+                  to="/updateMatch"
+                />
+                <Dropdown.Header>Delete</Dropdown.Header>
+                <Dropdown.Item
+                  text="Delete match"
+                  as = { Link }
+                  name="deleteMatch"
+                  to="/deleteMatch" 
+                />
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown text="Battle Guide" pointing className='link item'>
@@ -111,10 +119,13 @@ class App extends React.Component {
               <SearchMatch searchType="AccountID" />
             </Route>
             <Route path="/addMatchByMatchID">
-              <AddMatch />
+              <AddMatch addType="MatchID" />
             </Route>
             <Route path="/addMatchByAccountID">
-              <AddMatch />
+              <AddMatch addType="MatchID" />
+            </Route>
+            <Route path="/updateMatch">
+              <UpdateMatch />
             </Route>
             <Route path="/deleteMatch">
               <DeleteMatch />
