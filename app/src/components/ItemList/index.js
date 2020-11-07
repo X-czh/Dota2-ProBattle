@@ -12,8 +12,8 @@ export default class ItemList extends Component{
         return(
             <div>
                 <h3>Recommended items:</h3>
-                <ul>
-                    {items.map((item,index) => (<li key={index}>{item}</li>))}
+                <ul> 
+                   {items.map((item,index) => (<li key={index}>Item:{item.item_name}, aggregated winning rate:{item.aggregated_win_rate}</li>))}
                 </ul>
             </div>
             
