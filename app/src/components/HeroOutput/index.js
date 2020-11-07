@@ -18,6 +18,12 @@ export default class HeroOutput extends Component{
                     </ul>
                 </div> 
             )
+        } else if (heroes[0].wrong == 0) {
+                <div>
+                    <h3>Opponent's most used heroes</h3>
+                    <ul>
+                    </ul>
+                </div> 
         } else {
             return(
                 <div>
