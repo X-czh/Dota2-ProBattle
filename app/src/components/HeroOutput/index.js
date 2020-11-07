@@ -14,7 +14,7 @@ export default class HeroOutput extends Component{
                 <div>
                     <h3>Opponent's most used heroes</h3>
                     <ul>
-                        <li>Invalid account ID or no recent matches</li>
+                       
                     </ul>
                 </div> 
             )
@@ -22,6 +22,7 @@ export default class HeroOutput extends Component{
                 <div>
                     <h3>Opponent's most used heroes</h3>
                     <ul>
+                         <li>Invalid account ID or no recent matches</li>
                     </ul>
                 </div> 
         } else {
