@@ -4,17 +4,20 @@
 
 * Node.js
 * Yarn
-* Python
-* MySQL
+* Python 3.8
+* MySQL 8.0
 
 ## Install
 
-Under `/app`:
+Make sure you have all the dependencies installed and MySQL Server is running.
 
 ```sh
-cd app && yarn install
-cd api && python3 -m venv venv
-source venv/bin/activate && pip3 install -r requirements.txt
+git clone --recurse-submodules https://github.com/X-czh/Dota2-ProBattle.git
+cd Dota2-ProBattle
+
+# Replace the MySQL host, user and password with your own ones
+# WARNING: It will drop the existing database first and create a new one!
+source install.sh
 ```
 
 ## Run

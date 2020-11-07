@@ -1,5 +1,9 @@
+HOST="localhost"
+USER="root"
+PWD="Dota2ProBattlePWD"
+
 # create database
-mysql --user=root --password="Dota2ProBattlePWD" -e "source db.sql" &&
+mysql --host=$HOST --user=$USER --password=$PWD -e "source db.sql" &&
 
 # install react project
 cd app && yarn install &&
