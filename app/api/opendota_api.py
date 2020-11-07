@@ -22,7 +22,7 @@ class OpenDotaAPI:
                 print(e)
                 time.sleep(5)
         else:
-            ValueError("Unable to connect to OpenDota API")
+            raise ValueError("Unable to connect to OpenDota API")
 
     # Return a list of 100 recent matches; save smaller match_id
     def get_recent_matches(self, use_last_match=False):

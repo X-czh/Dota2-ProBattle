@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export default class HeroApp extends Component{
     state = {
-        heroes: ''
+        heroes: []
     }
     
     submitId = (id) => {

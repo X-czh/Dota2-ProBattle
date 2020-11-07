@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS Matches (
 
 CREATE TABLE IF NOT EXISTS Item (
     item_id INT,
-    name VARCHAR(30),
+    item_name VARCHAR(30),
     PRIMARY KEY (item_id)
 );
 
 CREATE TABLE IF NOT EXISTS Hero (
     hero_id INT,
-    name VARCHAR(30),
+    hero_name VARCHAR(30),
     PRIMARY KEY (hero_id)
 );
 
