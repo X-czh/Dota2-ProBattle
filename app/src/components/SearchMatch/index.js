@@ -54,7 +54,7 @@ class SearchMatch extends React.Component {
       .then(response => {
         this.setState({response: response.data});
         this.setState({active: false});
-        console.log(response);
+        console.log(response.data);
       });
   }
 
