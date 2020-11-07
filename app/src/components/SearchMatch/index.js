@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import './styles.scss';
-import axios from 'axios'
-import { Form, Button } from 'semantic-ui-react';
+import axios from 'axios';
+import { Form, Button, Item, Loader } from 'semantic-ui-react';
 
 
 class SearchMatch extends React.Component {
@@ -12,9 +12,10 @@ class SearchMatch extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = { 
-      matchID: '', 
-      accountID: '',
-      response: '', 
+      MatchID: '', 
+      AccountID: '',
+      response: [], 
+      active: false,
       searchType: props.searchType 
     }
   }
@@ -43,56 +44,61 @@ class SearchMatch extends React.Component {
   handleSubmit() {
     let params = {};
     if (this.state.searchType === "MatchID") {
-      params = { id: this.state.matchID };
+      params = { id: this.state.MatchID };
     } else {
-      params = { id: this.state.accountID };
+      params = { id: this.state.AccountID };
     }
     console.log(params)
+    this.setState({active: true})
     axios.post('http://127.0.0.1:5000/searchMatchBy' + this.state.searchType, { params })
       .then(response => {
         this.setState({response: response});
+        this.setState({active: false});
         console.log(response);
       });
   }
 
   render() {
-    const { matchID, accountID, response, searchType } = this.state;
+    const { MatchID, AccountID, response, searchType } = this.state;
     
-    if (searchType === 'MatchID') {
-      return (
-        <div className="Search">
-          <Form>
-            <Form.Field>
-              <label>Match ID</label>
-              <Form.Input 
-                name='matchID'
-                value={matchID}
-                onChange={this.handleChange} 
-              />
-            </Form.Field>
-            <Button onClick={this.handleSubmit}>Search</Button>
-          </Form>
-        </div>
-      );
-    } else if (searchType === 'AccountID') {
-      return (
-        <div className="Search">
-          <Form>
-            <Form.Field>
-              <label>Account ID</label>
-              <Form.Input 
-                name='accountID'
-                value={accountID}
-                onChange={this.handleChange} 
-              />
-            </Form.Field>
-            <Button onClick={this.handleSubmit}>Search</Button>
-          </Form>
-        </div>
-      );
+    let IDType = searchType.substring(0, searchType.length-2);
+    let value_ = '';
+    if (searchType === "AccountID") {
+      value_ = AccountID;
+    } else {
+      value_ = MatchID;
     }
 
-    
+    return (
+      <div className="Search">
+        <Form>
+          <Form.Field>
+            <label>{IDType} ID</label>
+            <Form.Input 
+              name={searchType}
+              value={value_}
+              onChange={this.handleChange} 
+            />
+          </Form.Field>
+          <Button onClick={this.handleSubmit}>Search</Button>
+        </Form>
+        <Loader active={this.state.active}>Loading</Loader>
+        <Item.Group divided>
+          {this.state.response.map((match) => (
+            <Item>
+              <Item.Content>
+                <Item.Header as='h4'>{match.match_id}</Item.Header>
+                <Item.Description>
+                  <p>{match.date}</p>
+                </Item.Description>
+              </Item.Content>
+            </Item>
+          ))}
+        </Item.Group>
+      </div>
+    );
+
+  
   }
 }
 
