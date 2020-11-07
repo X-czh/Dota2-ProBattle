@@ -14,7 +14,7 @@ export default class HeroApp extends Component{
         const url = 'http://127.0.0.1:5000/debuffOpponentHero'
         axios.post(url, id)
             .then(res => {
-                heroes = Object(res.data)
+                heroes = res.data
                 this.setState({heroes})
                 console.log(res.data)
             })
