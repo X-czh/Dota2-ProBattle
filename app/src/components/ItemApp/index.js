@@ -26,7 +26,7 @@ export default class ItemApp extends Component {
   render() {
     const {items} = this.state
     return (
-      <div>
+      <div className = 'item-wrapper'>
         <Header as='h2'>Recommendation of item</Header>
         <ItemSearch itemSearch = {this.itemSearch}/>
         <ItemList items={items} />
