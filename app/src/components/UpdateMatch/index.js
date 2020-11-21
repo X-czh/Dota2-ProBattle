@@ -29,7 +29,7 @@ class UpdateMatch extends React.Component {
       MatchID: this.state.MatchID,
       startTime: this.state.startTime
     };
-    axios.post('http://127.0.0.1:5000/updateMatch', { params })
+    axios.post('http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/updateMatch', { params })
       .then(response => {
           console.log(response);
           this.setState({ response: response.data })

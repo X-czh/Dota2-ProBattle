@@ -46,7 +46,7 @@ class AddMatch extends React.Component {
     }
     console.log(params);
     this.setState({ active: true });
-    axios.post('http://127.0.0.1:5000/addMatchBy' + this.state.addType, { params })
+    axios.post('http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/addMatchBy' + this.state.addType, { params })
       .then(response => {
         console.log(response);
         this.setState({ 

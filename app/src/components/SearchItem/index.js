@@ -21,7 +21,7 @@ class SearchItem extends React.Component {
 
   handleClick() {
       console.log('button clicked');
-      axios.get('http://127.0.0.1:5000/addItem')
+      axios.get('http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/addItem')
         .then(response => console.log(response));
   }
 

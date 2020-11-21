@@ -15,8 +15,8 @@ CORS(app, support_credentials=True)
 
 
 # Configure MySQL
-conn = pymysql.connect(host='localhost',
-                       user='root',
+conn = pymysql.connect(host='database-1.ce4xuqw1rbhz.us-east-1.rds.amazonaws.com',
+                       user='admin',
                        password='Dota2ProBattlePWD',
                        db='dota2probattle',
                        charset='utf8mb4',
