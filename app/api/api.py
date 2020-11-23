@@ -278,5 +278,45 @@ def debuff_opponent_item():
     return json.dumps(data)
 
 
+@app.route('/winPredict', methods=['POST'])
+def win_predict():
+    win_rate = 0
+    try:
+        # parse form
+        form = request.get_json()['params']
+    except KeyError as ke:
+        msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
+    except MySQLError as me:
+        msg = "Got error {!r}, errno is {}".format(me, me.args[0])
+    except:
+        msg = "Unknown error"
+    else:
+        msg = "Success"
+    print(msg)
+    return win_rate
+
+
+@app.route('/counterPickHero', methods=['POST'])
+def counter_pick_hero():
+    data = []
+    try:
+        # parse form
+        form = request.get_json()['params']
+        hero = form['hero_id']
+        data = []
+    except KeyError as ke:
+        msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
+    except MySQLError as me:
+        msg = "Got error {!r}, errno is {}".format(me, me.args[0])
+    except:
+        msg = "Unknown error"
+    else:
+        msg = "Success"
+    print(msg)
+    if len(data) == 0:
+        data = [0]
+    return json.dumps(data)
+
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
