@@ -8,6 +8,7 @@ This project is developed and tested with
 * Yarn 1.22.5
 * Python 3.8.5
 * MySQL 8.0.22
+* Neo4j 4.2.0
 
 ## Install
 
