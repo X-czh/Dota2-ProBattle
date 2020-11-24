@@ -293,8 +293,6 @@ def win_predict():
         win_rate = model.predict(radiant_heroes, dire_heroes)[0]
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
-    except MySQLError as me:
-        msg = "Got error {!r}, errno is {}".format(me, me.args[0])
     except:
         msg = "Unknown error"
     else:
