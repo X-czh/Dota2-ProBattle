@@ -7,7 +7,7 @@ import pymysql.cursors
 from pymysql import MySQLError
 
 from data_manager import DataManager
-
+from ml_prediction.model import Model
 
 # Configure Flask
 app = Flask(__name__, static_folder='../build', static_url_path='/')
@@ -25,6 +25,10 @@ conn = pymysql.connect(host='database-1.ce4xuqw1rbhz.us-east-1.rds.amazonaws.com
 
 # Configure Data Manager
 data_manager = DataManager(conn)
+
+
+# Configure ML model for win rate prediction
+model = Model("ml_prediction")
 
 
 @app.route('/')
@@ -284,6 +288,9 @@ def win_predict():
     try:
         # parse form
         form = request.get_json()['params']
+        radiant_heroes = [form[f'radient_hero{i+1}'] for i in range(5)]
+        dire_heroes = [form[f'dire_hero{i+1}'] for i in range(5)]
+        win_rate = model.predict(radiant_heroes, dire_heroes)[0]
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
     except MySQLError as me:
