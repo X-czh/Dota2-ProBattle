@@ -1,4 +1,5 @@
 import simplejson as json
+from dotenv import load_dotenv, find_dotenv
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -8,6 +9,16 @@ from pymysql import MySQLError
 
 from data_manager import DataManager
 from ml_prediction.model import Model
+from util import env
+
+
+# Load environment variables
+load_dotenv(find_dotenv())
+MYSQL_HOST = env('MYSQL_HOST')
+MYSQL_USER = env('MYSQL_USER')
+MYSQL_PWD = env('MYSQL_PWD')
+MYSQL_DB = env('MYSQL_DB')
+
 
 # Configure Flask
 app = Flask(__name__, static_folder='../build', static_url_path='/')
@@ -15,10 +26,10 @@ CORS(app, support_credentials=True)
 
 
 # Configure MySQL
-conn = pymysql.connect(host='database-1.ce4xuqw1rbhz.us-east-1.rds.amazonaws.com',
-                       user='admin',
-                       password='Dota2ProBattlePWD',
-                       db='dota2probattle',
+conn = pymysql.connect(host=MYSQL_HOST,
+                       user=MYSQL_USER,
+                       password=MYSQL_PWD,
+                       db=MYSQL_DB,
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
 
