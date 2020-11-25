@@ -14,7 +14,7 @@ NEO4J_PWD=vehicle-means-keys
 mysql --host=$MYSQL_HOST --port=$MYSQL_PORT --user=$MYSQL_USER --password=$MYSQL_PWD -e "source db.sql" &&
 
 # install react project
-cd app && yarn install &&
+cd app && yarn run install &&
 
 # install python3 venv
 cd api && python3 -m venv venv &&

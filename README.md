@@ -35,15 +35,15 @@ Under `/app`:
 
 ```sh
 # In one terminal
-yarn start
+yarn run start
 
 # In another terminal
-yarn start-api
+yarn run start-api
 ```
 
 ### Deploy mode
 
 ```sh
-yarn build
+yarn run build
 cd api && source venv/bin/activate && python3 api.py
 ```
