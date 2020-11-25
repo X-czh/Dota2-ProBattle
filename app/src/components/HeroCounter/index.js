@@ -13,20 +13,23 @@ export default class HeroCounter extends Component{
 
     handleChange = (event) => {
         const hero = event.target.value
+        // console.log(hero,'---1---')
         this.setState({hero})
+        // console.log(this.state.hero,'---2---')
     }
 
     handleSubmit = (event) => {
-        const {hero, results} = this.state
+        const {hero} = this.state
+        let {results} = this.state
+        console.log(hero)
         const url = 'http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/counterPickHero'
         axios.post(url, hero)
             .then(res => {
-                const result = res.data
+                results = res.data
                 this.setState({
                     hero:'',
-                    results:result
+                    results
                 })
-                console.log(res.data)
             })
             .catch(err => console.log(err))
         event.preventDefault()
@@ -39,7 +42,6 @@ export default class HeroCounter extends Component{
                 <Form.Field>
                         <label>Opponent's Hero:</label>
                         <MyInput
-                            name='hero'
                             value={hero}
                             onChange={this.handleChange}
                         />
