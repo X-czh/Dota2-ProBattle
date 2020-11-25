@@ -1,10 +1,9 @@
+import pymysql.cursors
 import simplejson as json
-from dotenv import load_dotenv, find_dotenv
-
+from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
 from flask_cors import CORS
-
-import pymysql.cursors
+from neo4j import GraphDatabase, basic_auth
 from pymysql import MySQLError
 
 from data_manager import DataManager
@@ -18,6 +17,9 @@ MYSQL_HOST = env('MYSQL_HOST')
 MYSQL_USER = env('MYSQL_USER')
 MYSQL_PWD = env('MYSQL_PWD')
 MYSQL_DB = env('MYSQL_DB')
+NEO4J_HOST = env('NEO4J_HOST')
+NEO4J_USER = env('NEO4J_USER')
+NEO4J_PWD = env('NEO4J_PWD')
 
 
 # Configure Flask
@@ -34,8 +36,13 @@ conn = pymysql.connect(host=MYSQL_HOST,
                        cursorclass=pymysql.cursors.DictCursor)
 
 
+# Configure Neo4j
+driver = GraphDatabase.driver(NEO4J_HOST, auth=basic_auth(NEO4J_USER, NEO4J_PWD))
+session = driver.session()
+
+
 # Configure Data Manager
-data_manager = DataManager(conn)
+data_manager = DataManager(conn, session)
 
 
 # Configure ML model for win rate prediction
@@ -319,7 +326,20 @@ def counter_pick_hero():
         # parse form
         form = request.get_json()['params']
         hero = form['hero_id']
-        data = []
+        results = session.run(
+            (
+                'MATCH (a:Hero)-[r:WINNING_RECORD]->(b:Hero) '
+                'WHERE b.id = {id} AND r.total <> 0 '
+                'RETURN a.name, a.win/a.total AS win_rate'
+                'ORDER BY win_rate DESC '
+                'LIMIT 5'
+            ),
+            {
+                'id': hero
+            }
+        )
+        data = results.single()
+        print(data)
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
     except MySQLError as me:
@@ -336,3 +356,4 @@ def counter_pick_hero():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
+    counter_pick_hero()

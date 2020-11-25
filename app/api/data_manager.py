@@ -1,14 +1,23 @@
 import time
+
 import pymysql.cursors
 from pymysql import MySQLError
+
 from dotaconstants_api import DotaConstantsAPI
 from opendota_api import OpenDotaAPI
 
 
 class DataManager:
 
-    def __init__(self, conn):
+    def __init__(self, conn, session):
+        """
+        Construct a new 'DataManager' object.
+
+        :param conn: The MySQL cursor connection
+        :param session: The Neo4j session
+        """
         self.conn = conn
+        self.session = session
         self.dotaconstants_api = DotaConstantsAPI()
         self.opendota_api = OpenDotaAPI()
 
@@ -37,8 +46,27 @@ class DataManager:
             # who do not make their match records public
             stmt = 'INSERT INTO Player VALUES(%s, %s)'
             cursor.execute(stmt, (0, ""))
-
         self.conn.commit()
+
+        # insert hero nodes into Neo4j
+        for key in heroes.keys():
+            entry = heroes[key]
+            self.session.run(
+                'CREATE (hero:Hero {id: {id}, name: {name}})',
+                {
+                    'id': entry['id'], 
+                    'name': entry['localized_name']
+                }
+            )
+
+        # create pair-wise relationship among heroes
+        self.session.run(
+            (
+                'MATCH (a:Hero), (b:Hero) '
+                'CREATE (a)-[r:WINNING_RECORD {total: 0, win: 0}]->(b)'
+            )
+        )
+
 
     def insert_recent_matches(self):
         matches = []
@@ -83,6 +111,42 @@ class DataManager:
                 personaname = ""
             self._insert_player(account_id, personaname)
             self._insert_plays_in(match_id, account_id, player_stats)
+
+        # update hero winning record in Neo4j
+        radiant_win = match_info['radiant_win']
+        radiant_heroes = []
+        dire_heroes = []
+        for player_stats in match_info['players']:
+            if player_stats['isRadiant']:
+                radiant_heroes.append(player_stats['hero_id'])
+            else:
+                dire_heroes.append(player_stats['hero_id'])
+        for hero1 in radiant_heroes:
+            for hero2 in dire_heroes:
+                self.session.run(
+                    (
+                        'MATCH (a:Hero)-[r:WINNING_RECORD]->(b:Hero) '
+                        'WHERE a.id = {id1} AND b.id = {id2} '
+                        'SET r.total = r.total + 1, r.win = r.win + {win}'
+                    ),
+                    {
+                        'id1': hero1,
+                        'id2': hero2, 
+                        'win': 1 if radiant_win else 0
+                    }
+                )
+                self.session.run(
+                    (
+                        'MATCH (a:Hero)-[r:WINNING_RECORD]->(b:Hero) '
+                        'WHERE a.id = {id1} AND b.id = {id2} '
+                        'SET r.total = r.total + 1, r.win = r.win + {win}'
+                    ),
+                    {
+                        'id1': hero2,
+                        'id2': hero1, 
+                        'win': 0 if radiant_win else 1
+                    }
+                )
 
     def _insert_match(self, match_id, start_time):
         print(f"inserting match - id: {match_id}, start_time: {start_time}")

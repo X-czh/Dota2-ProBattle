@@ -8,7 +8,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 joblib==0.17.0
 MarkupSafe==1.1.1
-neo4j==4.2.0
+neo4j-driver==4.2.0
 numpy==1.19.4
 PyMySQL==0.10.1
 python-dotenv==0.14.0
