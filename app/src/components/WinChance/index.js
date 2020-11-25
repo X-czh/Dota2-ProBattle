@@ -27,7 +27,7 @@ export default class WinChance extends Component{
     handleClick = (event) => {
         const heros = this.state
         let {result} = this.state
-        const url = 'http://127.0.0.1:5000/winPredict'
+        const url = 'http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/winPredict'
         axios.post(url, heros)
             .then(res => {
                 result = res.data
