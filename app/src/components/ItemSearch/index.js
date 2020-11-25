@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button, Header } from 'semantic-ui-react'
 
+import MyInput from "../MyInput";
+
 export default class ItemSearch extends Component{
 
     static propTypes = {
@@ -35,7 +37,7 @@ export default class ItemSearch extends Component{
                 <Form>
                     <Form.Field>
                         <label>My Hero:</label>
-                        <Form.Input 
+                        <MyInput
                             name='myhero'
                             value={myhero}
                             onChange={this.handleChange}
@@ -43,7 +45,7 @@ export default class ItemSearch extends Component{
                     </Form.Field>
                     <Form.Field>
                         <label>Opponent Hero 1</label>
-                        <Form.Input
+                        <MyInput
                             name='opponenthero1'
                             value={opponenthero1}
                             onChange={this.handleChange}
@@ -51,7 +53,7 @@ export default class ItemSearch extends Component{
                     </Form.Field>
                     <Form.Field>
                         <label>Opponent Hero 2</label>
-                        <Form.Input
+                        <MyInput
                             name='opponenthero2'
                             value={opponenthero2}
                             onChange={this.handleChange}
@@ -59,7 +61,7 @@ export default class ItemSearch extends Component{
                     </Form.Field>
                     <Form.Field>
                         <label>Opponent Hero 3</label>
-                        <Form.Input
+                        <MyInput
                             name='opponenthero3'
                             value={opponenthero3}
                             onChange={this.handleChange}
@@ -67,7 +69,7 @@ export default class ItemSearch extends Component{
                     </Form.Field>
                     <Form.Field>
                         <label>Opponent Hero 4</label>
-                        <Form.Input
+                        <MyInput
                             name='opponenthero4'
                             value={opponenthero4}
                             onChange={this.handleChange}
@@ -75,7 +77,7 @@ export default class ItemSearch extends Component{
                     </Form.Field>
                     <Form.Field>
                         <label>Opponent Hero 5</label>
-                        <Form.Input
+                        <MyInput
                             name='opponenthero5'
                             value={opponenthero5}
                             onChange={this.handleChange}

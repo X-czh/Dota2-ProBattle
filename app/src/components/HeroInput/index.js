@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Input, Button, Header } from 'semantic-ui-react'
-import InputHeroList from '../InputHeroList'
+import { Button, Header } from 'semantic-ui-react'
+import MyInput from '../MyInput'
 
 export default class HeroInput extends Component{
     static propTypes = {
@@ -14,10 +14,8 @@ export default class HeroInput extends Component{
 
     handleChange = (event) => {
         const idInput = event.target.value
-        const re = /[0-9]+/
-        if(re.test(idInput)){
-            this.setState({idInput})  
-        }
+        console.log(idInput)
+        this.setState({idInput})
     }
 
     handleSubmit = (event) => {
@@ -32,11 +30,7 @@ export default class HeroInput extends Component{
         return(
             <div>
                 <Header as='h3'>Opponent's account id</Header>
-                <Input 
-                    value={idInput}
-                    onChange={this.handleChange} 
-                />
-                <InputHeroList />
+                <MyInput value={idInput} onChange={this.handleChange} />
                 <Button onClick = {this.handleSubmit}>Click</Button>
             </div>
         )
