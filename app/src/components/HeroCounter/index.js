@@ -17,14 +17,14 @@ export default class HeroCounter extends Component{
     }
 
     handleSubmit = (event) => {
-        const {hero} = this.state
+        const {hero, results} = this.state
         const url = 'http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/winPredict'
         axios.post(url, hero)
             .then(res => {
-                result = res.data
+                const result = res.data
                 this.setState({
                     hero:'',
-                    results:[]
+                    results:result
                 })
                 console.log(res.data)
             })
