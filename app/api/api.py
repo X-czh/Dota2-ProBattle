@@ -4,6 +4,7 @@ from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
 from flask_cors import CORS
 from neo4j import GraphDatabase, basic_auth
+from neo4j.exceptions import Neo4jError
 from pymysql import MySQLError
 
 from data_manager import DataManager
@@ -329,21 +330,22 @@ def counter_pick_hero():
         results = session.run(
             (
                 'MATCH (a:Hero)-[r:WINNING_RECORD]->(b:Hero) '
-                'WHERE b.id = {id} AND r.total <> 0 '
-                'RETURN a.name, a.win/a.total AS win_rate'
+                'WHERE b.id = {id} AND r.total >= {threshold} '
+                'RETURN a.name, toFloat(r.win)/r.total AS win_rate '
                 'ORDER BY win_rate DESC '
                 'LIMIT 5'
             ),
             {
-                'id': hero
+                'id': hero,
+                'threshold': 3
             }
         )
-        data = results.single()
-        print(data)
+        for result in results:
+            data.append(result)
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
-    except MySQLError as me:
-        msg = "Got error {!r}, errno is {}".format(me, me.args[0])
+    except Neo4jError as ne:
+        msg = "Got error {!r}, errno is {}".format(ne, ne.args[0])
     except:
         msg = "Unknown error"
     else:
@@ -356,4 +358,3 @@ def counter_pick_hero():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
-    counter_pick_hero()
