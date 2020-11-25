@@ -1,4 +1,12 @@
 import React from 'react';
+import { Dropdown, Header, Menu } from 'semantic-ui-react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+
 import Body from '../Body';
 import MyHeader from '../MyHeader';
 import Footer from '../Footer';
@@ -8,14 +16,7 @@ import AddMatch from '../AddMatch';
 import DeleteMatch from '../DeleteMatch';
 import SearchMatch from '../SearchMatch';
 import UpdateMatch from '../UpdateMatch';
-import { Dropdown, Header, Menu } from 'semantic-ui-react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
-
+import WinChance from '../WinChance';
 
 class App extends React.Component {
   componentDidMount() {
@@ -99,8 +100,8 @@ class App extends React.Component {
                 <Dropdown.Item
                 text="Winning Chance Prediction"
                 as = { Link }
-                name=""
-                to="/addMatch" />
+                name="WinChance"
+                to="/WinChance" />
               </Dropdown.Menu>
             </Dropdown>
            
@@ -132,6 +133,9 @@ class App extends React.Component {
             </Route>
             <Route path="/HeroApp">
               <HeroApp />
+            </Route>
+            <Route path="/WinChance">
+              <WinChance />
             </Route>
           </Switch>
         </Router>
