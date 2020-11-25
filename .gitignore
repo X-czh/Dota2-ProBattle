@@ -140,3 +140,4 @@ dist/*
 build
 build/*
 yarn.lock
+package-lock.json
