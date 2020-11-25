@@ -12,10 +12,11 @@ export default class HeroCounter extends Component{
     }
 
     handleChange = (event) => {
-        const hero = event.target.value
+        const hero_v = event.target.value
+        let hero = this.state.hero
+        hero[0] = hero_v
         // console.log(hero,'---1---')
         this.setState({hero})
-        // console.log(this.state.hero,'---2---')
     }
 
     handleSubmit = (event) => {
