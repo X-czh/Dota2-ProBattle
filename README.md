@@ -2,7 +2,7 @@
 
 ## Remote deployment
 
-We host the web app remotely at this [link](http://ec2-3-89-65-62.compute-1.amazonaws.com:3000/) (most likely already expired when you read this). Since we are poor, we only rely on free cloud services and cannot host the app for too long. The frontend and backend are hosted on two separate AWS EC2 micro instances. The MySQL server is hosted via Amazon RDS. The Neo4j server is hosted via Neo4j Sandbox.
+We host the web app remotely at this [link](http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/) (most likely already expired when you read this). Since we are poor, we only rely on free cloud services and cannot host the app for too long. The frontend and backend are hosted on two separate AWS EC2 micro instances. The MySQL server is hosted via Amazon RDS. The Neo4j server is hosted via Neo4j Sandbox.
 
 ## Dependency
 
