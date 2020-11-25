@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Input, Button, Header } from 'semantic-ui-react'
+import InputHeroList from '../InputHeroList'
 
 export default class HeroInput extends Component{
     static propTypes = {
@@ -35,6 +36,7 @@ export default class HeroInput extends Component{
                     value={idInput}
                     onChange={this.handleChange} 
                 />
+                <InputHeroList />
                 <Button onClick = {this.handleSubmit}>Click</Button>
             </div>
         )
