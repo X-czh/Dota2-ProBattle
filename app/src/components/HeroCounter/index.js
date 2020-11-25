@@ -12,15 +12,14 @@ export default class HeroCounter extends Component{
     }
 
     handleChange = (event) => {
-        const hero_v = event.target.value
-        let hero = this.state.hero
-        hero[0] = hero_v
+        const hero = event.target.value
         // console.log(hero,'---1---')
         this.setState({hero})
+        // console.log(this.state.hero,'---2---')
     }
 
     handleSubmit = (event) => {
-        const {hero} = this.state
+        const hero = this.state
         let {results} = this.state
         console.log(hero)
         const url = 'http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/counterPickHero'
@@ -28,7 +27,7 @@ export default class HeroCounter extends Component{
             .then(res => {
                 results = res.data
                 this.setState({
-                    hero:'',
+                    hero:[],
                     results
                 })
             })
