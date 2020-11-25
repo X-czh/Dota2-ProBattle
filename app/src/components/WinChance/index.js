@@ -7,16 +7,16 @@ import './styles.scss';
 export default class WinChance extends Component{
 
     state = {
-        radiant_heroes1:'',
-        radiant_heroes2:'',
-        radiant_heroes3:'',
-        radiant_heroes4:'',
-        radiant_heroes5:'',
-        dire_heroes1:'',
-        dire_heroes2:'',
-        dire_heroes3:'',
-        dire_heroes4:'',
-        dire_heroes5:'',
+        radiant_hero1:'',
+        radiant_hero2:'',
+        radiant_hero3:'',
+        radiant_hero4:'',
+        radiant_hero5:'',
+        dire_hero1:'',
+        dire_hero2:'',
+        dire_hero3:'',
+        dire_hero4:'',
+        dire_hero5:'',
         result:''
     }
 
@@ -32,16 +32,16 @@ export default class WinChance extends Component{
             .then(res => {
                 result = res.data
                 this.setState({
-                    radiant_heroes1:'',
-                    radiant_heroes2:'',
-                    radiant_heroes3:'',
-                    radiant_heroes4:'',
-                    radiant_heroes5:'',
-                    dire_heroes1:'',
-                    dire_heroes2:'',
-                    dire_heroes3:'',
-                    dire_heroes4:'',
-                    dire_heroes5:'',
+                    radiant_hero1:'',
+                    radiant_hero2:'',
+                    radiant_hero3:'',
+                    radiant_hero4:'',
+                    radiant_hero5:'',
+                    dire_hero1:'',
+                    dire_hero2:'',
+                    dire_hero3:'',
+                    dire_hero4:'',
+                    dire_hero5:'',
                     result
                 })
                 console.log(res.data)
@@ -51,7 +51,7 @@ export default class WinChance extends Component{
     }
 
     render() {
-        const {radiant_heroes1,radiant_heroes2,radiant_heroes3,radiant_heroes4,radiant_heroes5,dire_heroes1,dire_heroes2,dire_heroes3,dire_heroes4,dire_heroes5,result} = this.state
+        const {radiant_hero1,radiant_hero2,radiant_hero3,radiant_hero4,radiant_hero5,dire_hero1,dire_hero2,dire_hero3,dire_hero4,dire_hero5,result} = this.state
         return(
             <div className='Main-Wrapper'>
                 <div className='MyTeam-Wrapper'>
@@ -60,8 +60,8 @@ export default class WinChance extends Component{
                             <label className='hero-label'>HERO 1</label>
                             <Form.Input 
                                 className='hero-label'
-                                name='radiant_heroes1'
-                                value={radiant_heroes1}
+                                name='radiant_hero1'
+                                value={radiant_hero1}
                                 onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -69,8 +69,8 @@ export default class WinChance extends Component{
                             <label className='hero-label'>HERO 2</label>
                             <Form.Input 
                                 className='hero-label'
-                                name='radiant_heroes2'
-                                value={radiant_heroes2}
+                                name='radiant_hero2'
+                                value={radiant_hero2}
                                 onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -78,8 +78,8 @@ export default class WinChance extends Component{
                             <label className='hero-label'>HERO 3</label>
                             <Form.Input 
                                 className='hero-label'
-                                name='radiant_heroes3'
-                                value={radiant_heroes3}
+                                name='radiant_hero3'
+                                value={radiant_hero3}
                                 onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -87,8 +87,8 @@ export default class WinChance extends Component{
                             <label className='hero-label'>HERO 4</label>
                             <Form.Input 
                                 className='hero-label'
-                                name='radiant_heroes4'
-                                value={radiant_heroes4}
+                                name='radiant_hero4'
+                                value={radiant_hero4}
                                 onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -96,8 +96,8 @@ export default class WinChance extends Component{
                             <label className='hero-label'>HERO 5</label>
                             <Form.Input 
                                 className='hero-label'
-                                name='radiant_heroes5'
-                                value={radiant_heroes5}
+                                name='radiant_hero5'
+                                value={radiant_hero5}
                                 onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -117,8 +117,8 @@ export default class WinChance extends Component{
                         <label className='hero-label'>HERO 1</label>
                         <Form.Input 
                             className='hero-label'
-                            name='dire_heroes1'
-                            value={dire_heroes1}
+                            name='dire_hero1'
+                            value={dire_hero1}
                             onChange={this.handleChange}
                         />
                     </Form.Field>
@@ -126,8 +126,8 @@ export default class WinChance extends Component{
                         <label className='hero-label'>HERO 2</label>
                         <Form.Input 
                             className='hero-label'
-                            name='dire_heroes2'
-                            value={dire_heroes2}
+                            name='dire_hero2'
+                            value={dire_hero2}
                             onChange={this.handleChange}
                         />
                     </Form.Field>
@@ -135,8 +135,8 @@ export default class WinChance extends Component{
                         <label className='hero-label'>HERO 3</label>
                         <Form.Input 
                             className='hero-label'
-                            name='dire_heroes3'
-                            value={dire_heroes3}
+                            name='dire_hero3'
+                            value={dire_hero3}
                             onChange={this.handleChange}
                         />
                     </Form.Field>
@@ -144,8 +144,8 @@ export default class WinChance extends Component{
                         <label className='hero-label'>HERO 4</label>
                         <Form.Input 
                             className='hero-label'
-                            name='dire_heroes4'
-                            value={dire_heroes4}
+                            name='dire_hero4'
+                            value={dire_hero4}
                             onChange={this.handleChange}
                         />
                     </Form.Field>
@@ -153,8 +153,8 @@ export default class WinChance extends Component{
                         <label className='hero-label'>HERO 5</label>
                         <Form.Input 
                             className='hero-label'
-                            name='dire_heroes5'
-                            value={dire_heroes5}
+                            name='dire_hero5'
+                            value={dire_hero5}
                             onChange={this.handleChange}
                         />
                     </Form.Field>
