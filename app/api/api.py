@@ -307,7 +307,7 @@ def win_predict():
     try:
         # parse form
         form = request.get_json()['params']
-        radiant_heroes = [form[f'radient_hero{i+1}'] for i in range(5)]
+        radiant_heroes = [form[f'radiant_hero{i+1}'] for i in range(5)]
         dire_heroes = [form[f'dire_hero{i+1}'] for i in range(5)]
         win_rate = model.predict(radiant_heroes, dire_heroes)[0]
     except KeyError as ke:
