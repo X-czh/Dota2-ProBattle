@@ -66,27 +66,3 @@ CREATE TABLE IF NOT EXISTS Plays_in (
     FOREIGN KEY (item_5) REFERENCES Item(item_id)
         ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS Freq_items (
-    hero_id INT,
-    item_id INT,
-    winning_rate FLOAT,
-    frequency FLOAT,
-    PRIMARY KEY (hero_id, item_id),
-    FOREIGN KEY (hero_id) REFERENCES Hero(hero_id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (item_id) REFERENCES Item(item_id)
-        ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Freq_heroes (
-    hero_id INT,
-    account_id BIGINT,
-    winning_rate FLOAT,
-    frequency FLOAT,
-    PRIMARY KEY (hero_id, account_id),
-    FOREIGN KEY (hero_id) REFERENCES Hero(hero_id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (account_id) REFERENCES Player(account_id)
-        ON DELETE CASCADE
-);
