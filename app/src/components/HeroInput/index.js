@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Button, Header } from 'semantic-ui-react'
+import { Input, Button, Header } from 'semantic-ui-react'
 
 export default class HeroInput extends Component{
     static propTypes = {
