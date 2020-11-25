@@ -319,8 +319,8 @@ def counter_pick_hero():
     data = []
     try:
         # parse form
-        form = request.get_json()['params']
-        hero = form['hero_id']
+        form = request.get_json()
+        hero = form['hero']
         results = session.run(
             (
                 'MATCH (a:Hero)-[r:WINNING_RECORD]->(b:Hero) '
