@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios'
 
+import MyInput from "../MyInput";
 import './styles.scss';
 
 export default class WinChance extends Component{
@@ -58,7 +59,7 @@ export default class WinChance extends Component{
                         <div className='teamhead'>RADIANT:</div>
                         <Form.Field className='hero-wrapper'>
                             <label className='hero-label'>HERO 1</label>
-                            <Form.Input 
+                            <MyInput
                                 className='hero-label'
                                 name='radiant_hero1'
                                 value={radiant_hero1}
@@ -67,7 +68,7 @@ export default class WinChance extends Component{
                         </Form.Field>
                         <Form.Field className='hero-wrapper'>
                             <label className='hero-label'>HERO 2</label>
-                            <Form.Input 
+                            <MyInput
                                 className='hero-label'
                                 name='radiant_hero2'
                                 value={radiant_hero2}
@@ -76,7 +77,7 @@ export default class WinChance extends Component{
                         </Form.Field>
                         <Form.Field className='hero-wrapper'>
                             <label className='hero-label'>HERO 3</label>
-                            <Form.Input 
+                            <MyInput
                                 className='hero-label'
                                 name='radiant_hero3'
                                 value={radiant_hero3}
@@ -85,7 +86,7 @@ export default class WinChance extends Component{
                         </Form.Field>
                         <Form.Field className='hero-wrapper'>
                             <label className='hero-label'>HERO 4</label>
-                            <Form.Input 
+                            <MyInput
                                 className='hero-label'
                                 name='radiant_hero4'
                                 value={radiant_hero4}
@@ -94,7 +95,7 @@ export default class WinChance extends Component{
                         </Form.Field>
                         <Form.Field className='hero-wrapper'>
                             <label className='hero-label'>HERO 5</label>
-                            <Form.Input 
+                            <MyInput
                                 className='hero-label'
                                 name='radiant_hero5'
                                 value={radiant_hero5}
@@ -115,7 +116,7 @@ export default class WinChance extends Component{
                     <div className='teamhead'>DIRE:</div>
                     <Form.Field className='hero-wrapper'>
                         <label className='hero-label'>HERO 1</label>
-                        <Form.Input 
+                        <MyInput
                             className='hero-label'
                             name='dire_hero1'
                             value={dire_hero1}
@@ -124,7 +125,7 @@ export default class WinChance extends Component{
                     </Form.Field>
                     <Form.Field className='hero-wrapper'>
                         <label className='hero-label'>HERO 2</label>
-                        <Form.Input 
+                        <MyInput
                             className='hero-label'
                             name='dire_hero2'
                             value={dire_hero2}
@@ -133,7 +134,7 @@ export default class WinChance extends Component{
                     </Form.Field>
                     <Form.Field className='hero-wrapper'>
                         <label className='hero-label'>HERO 3</label>
-                        <Form.Input 
+                        <MyInput
                             className='hero-label'
                             name='dire_hero3'
                             value={dire_hero3}
@@ -142,7 +143,7 @@ export default class WinChance extends Component{
                     </Form.Field>
                     <Form.Field className='hero-wrapper'>
                         <label className='hero-label'>HERO 4</label>
-                        <Form.Input 
+                        <MyInput
                             className='hero-label'
                             name='dire_hero4'
                             value={dire_hero4}
@@ -151,7 +152,7 @@ export default class WinChance extends Component{
                     </Form.Field>
                     <Form.Field className='hero-wrapper'>
                         <label className='hero-label'>HERO 5</label>
-                        <Form.Input 
+                        <MyInput
                             className='hero-label'
                             name='dire_hero5'
                             value={dire_hero5}
