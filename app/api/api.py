@@ -300,9 +300,9 @@ def win_predict():
     win_rate = 0
     try:
         # parse form
-        form = request.get_json()['params']
-        radiant_heroes = [form[f'radiant_hero{i+1}'] for i in range(5)]
-        dire_heroes = [form[f'dire_hero{i+1}'] for i in range(5)]
+        form = request.get_json()
+        radiant_heroes = [int(form[f'radiant_hero{i+1}']) for i in range(5)]
+        dire_heroes = [int(form[f'dire_hero{i+1}']) for i in range(5)]
         win_rate = model.predict(radiant_heroes, dire_heroes)[0]
     except KeyError as ke:
         msg = "Got error {!r}, errno is {}".format(ke, ke.args[0])
@@ -311,7 +311,7 @@ def win_predict():
     else:
         msg = "Success"
     print(msg)
-    return win_rate
+    return json.dumps(win_rate)
 
 
 @app.route('/counterPickHero', methods=['POST'])
