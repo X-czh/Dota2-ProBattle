@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Button, Header } from 'semantic-ui-react'
-import MyInput from '../MyInput'
 
 export default class HeroInput extends Component{
     static propTypes = {
@@ -30,7 +29,7 @@ export default class HeroInput extends Component{
         return(
             <div>
                 <Header as='h3'>Opponent's account id</Header>
-                <MyInput value={idInput} onChange={this.handleChange} />
+                <Input value={idInput} onChange={this.handleChange} />
                 <Button onClick = {this.handleSubmit}>Click</Button>
             </div>
         )
