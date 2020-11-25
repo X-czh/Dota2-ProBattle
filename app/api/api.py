@@ -11,7 +11,6 @@ from data_manager import DataManager
 from ml_prediction.model import Model
 from util import env
 
-
 # Load environment variables
 load_dotenv(find_dotenv())
 MYSQL_HOST = env('MYSQL_HOST')
@@ -22,11 +21,9 @@ NEO4J_HOST = env('NEO4J_HOST')
 NEO4J_USER = env('NEO4J_USER')
 NEO4J_PWD = env('NEO4J_PWD')
 
-
 # Configure Flask
 app = Flask(__name__, static_folder='../build', static_url_path='/')
 CORS(app, support_credentials=True)
-
 
 # Configure MySQL
 conn = pymysql.connect(host=MYSQL_HOST,
@@ -36,15 +33,12 @@ conn = pymysql.connect(host=MYSQL_HOST,
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
 
-
 # Configure Neo4j
 driver = GraphDatabase.driver(NEO4J_HOST, auth=basic_auth(NEO4J_USER, NEO4J_PWD))
 session = driver.session()
 
-
 # Configure Data Manager
 data_manager = DataManager(conn, session)
-
 
 # Configure ML model for win rate prediction
 model = Model("ml_prediction")
@@ -357,4 +351,5 @@ def counter_pick_hero():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
