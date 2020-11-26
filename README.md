@@ -1,5 +1,18 @@
 # Dota2-ProBattle
 
+Dota2-ProBattle is a web app that provides players with useful information to help them win and boost their Dota 2 skills. It provides:
+
+* Opponents' most commonly used heroes
+* Counter picks of opponents' heroes
+* Recommendation of items againt opponents' lineup
+* Winning chance against the opponents’ lineup
+
+Check out more info by watching our [introduction video]() or reading our [wiki page](https://github.com/X-czh/Dota2-ProBattle/wiki).
+
+## Screenshot
+
+![Screenshot](screenshot.png)
+
 ## Remote deployment
 
 We host the web app remotely at this [link](http://ec2-34-224-173-207.compute-1.amazonaws.com:5000/) (most likely already expired when you read this). Since we are poor, we only rely on free cloud services and cannot host the app for too long. The frontend and backend are hosted on two separate AWS EC2 micro instances. The MySQL server is hosted via Amazon RDS. The Neo4j server is hosted via Neo4j Sandbox.
@@ -31,7 +44,7 @@ source install.sh
 
 Under `/app`:
 
-### Develop mode
+### Develop Mode
 
 ```sh
 # In one terminal
@@ -41,9 +54,17 @@ yarn run start
 yarn run start-api
 ```
 
-### Deploy mode
+### Deploy Mode
 
 ```sh
 yarn run build
 cd api && source venv/bin/activate && python3 api.py
 ```
+
+## The Team
+
+Front End: [Tian Liu](https://github.com/TL021), [Zijie Lu](https://github.com/zjzijielu)
+
+Back End: [Zhanghao Chen](https://github.com/X-czh)
+
+Machine Learning: [Zijie Lu](https://github.com/zjzijielu)
