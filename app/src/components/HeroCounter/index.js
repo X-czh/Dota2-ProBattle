@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import { Form, Button, Header } from 'semantic-ui-react'
+import axios from "axios";
 
 import MyInput from "../MyInput";
-import axios from "axios";
+
+import './styles.css'
 
 export default class HeroCounter extends Component{
 
@@ -28,7 +30,7 @@ export default class HeroCounter extends Component{
                 results = res.data
                 this.setState({
                     hero:[],
-                    results
+                    results:results
                 })
             })
             .catch(err => console.log(err))
@@ -37,21 +39,22 @@ export default class HeroCounter extends Component{
 
     render() {
         const {hero, results} = this.state
+
         return(
-            <div>
+            <div className='hero-counter-wrapper'>
                 <Form.Field>
-                        <label>Opponent's Hero:</label>
-                        <MyInput
-                            value={hero}
-                            onChange={this.handleChange}
-                        />
+                    <h2>Opponent's Hero:</h2>
+                    <MyInput
+                        value={hero}
+                        onChange={this.handleChange}
+                        className='op-hero'
+                    />
+                    <Button className='op-btn' onClick={this.handleSubmit}>Search</Button>
                 </Form.Field>
-                <Button onClick={this.handleSubmit}>Search</Button>
-                <ul>
-                    <h3>Recommendated Heroes and Winning Rate</h3>
-                    {results.map((result, index) => (<li key={index}>Hero: {result[0]}, Winning Rate: {result[1]}</li>))}
-                </ul>
+                <h3>Recommendated Heroes and Winning Rate</h3>
+                {results.map((result, index) => (<div key={index}>Hero: {result[0]}, Winning Rate: {result[1]}</div>))}
             </div>
         )
+
     }
 }
