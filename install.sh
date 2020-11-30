@@ -1,14 +1,14 @@
-MYSQL_HOST=localhost
-# MYSQL_HOST=database-1.ce4xuqw1rbhz.us-east-1.rds.amazonaws.com
+# MYSQL_HOST=localhost
+MYSQL_HOST=database-1.ce4xuqw1rbhz.us-east-1.rds.amazonaws.com
 MYSQL_PORT=3306
-MYSQL_USER=root
-# MYSQL_USER=admin
+# MYSQL_USER=root
+MYSQL_USER=admin
 MYSQL_PWD=Dota2ProBattlePWD
 MYSQL_DB=dota2probattle
 
-NEO4J_HOST=bolt://54.175.38.249:37120
+NEO4J_HOST=bolt://100.25.45.187:33535
 NEO4J_USER=neo4j
-NEO4J_PWD=vehicle-means-keys
+NEO4J_PWD=country-fracture-tubs
 
 # create database
 mysql --host=$MYSQL_HOST --port=$MYSQL_PORT --user=$MYSQL_USER --password=$MYSQL_PWD -e "source db.sql" &&
