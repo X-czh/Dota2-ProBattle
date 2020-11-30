@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
+import axios from 'axios'
+
 import HeroInput from '../HeroInput'
 import HeroOutput from '../HeroOutput'
-import axios from 'axios'
+
+import './styles.css'
 
 export default class HeroApp extends Component{
     state = {
@@ -23,9 +26,9 @@ export default class HeroApp extends Component{
     render(){
         const {heroes} = this.state
         return(
-            <div>
+            <div className='sig-hero-wrapper'>
                 <h2>Opponents' signature heroes</h2>
-                <HeroInput submitId = {this.submitId}/>
+                <HeroInput submitId = {this.submitId}/><br/>
                 <HeroOutput heroes = {heroes}/>
             </div>
         )

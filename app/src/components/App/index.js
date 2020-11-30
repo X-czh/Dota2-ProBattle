@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  Redirect
 } from "react-router-dom";
 
 import Body from '../Body';
@@ -115,7 +116,7 @@ class App extends React.Component {
             {/* <Body /> */}
 
             <Switch>
-              <Route path="/" component={ Body } exact />
+//               <Route path="/" component={ Body } exact />
               <Route path="/item" >
                 <ItemApp />
               </Route>
@@ -146,6 +147,7 @@ class App extends React.Component {
               <Route path="/HeroCounter">
                 <HeroCounter />
               </Route>
+              <Redirect to='/searchMatchByMatchID' />
             </Switch>
           </Router>
           <Footer />

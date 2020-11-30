@@ -1,0 +1,12 @@
+.hero-counter-wrapper{
+    margin-left: 10px;
+}
+
+.op-hero{
+    /*display: inline;*/
+    float: left;
+}
+
+.op-btn{
+    display: inline;
+}
