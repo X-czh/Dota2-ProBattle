@@ -271,6 +271,7 @@ def debuff_opponent_item():
                         'FROM Plays_in AS T1, Plays_in AS T2\n'
                         'WHERE T1.match_id = T2.match_id AND T1.hero_id <> T2.hero_id)\n'
                         ') AS T\n'
+                    'WHERE item_id <> 0\n'
                     'GROUP BY hero, item_id, opponent\n'
                     ') AS S NATURAL JOIN Item\n'
                 'WHERE hero = %s AND opponent IN (%s, %s, %s, %s, %s)\n'
