@@ -7,7 +7,7 @@ Dota2-ProBattle is a web app that provides players with useful information to he
 * Recommendation of items againt opponents' lineup
 * Winning chance against the opponents’ lineup
 
-Check out more info by watching our [introduction video]() or reading our [wiki page](https://github.com/X-czh/Dota2-ProBattle/wiki).
+Check out more info by watching our [introduction video](https://youtu.be/pqxyu1WNbUg) or reading our [wiki page](https://github.com/X-czh/Dota2-ProBattle/wiki).
 
 ## Screenshot
 
